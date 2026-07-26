@@ -1,11 +1,11 @@
 ---
 name: "html-page-saver"
-description: "通过浏览器打开 URL，完整渲染 JS 后保存 HTML 到 strategy/htmls/，并重命名文件。触发场景：用户给出一个帖子/帖子列表的 URL，要求抓取并保存。"
+description: "通过浏览器打开 URL，完整渲染 JS 后保存 HTML 到 blogsummary/strategy/htmls/，并重命名文件。触发场景：用户给出一个帖子/帖子列表的 URL，要求抓取并保存。"
 ---
 
 # HTML Page Saver
 
-用浏览器（browser-cdp）打开 URL，等待 JS 完全渲染后，将完整 HTML 保存到 `strategy/htmls/`，并重命名为简洁文件名。
+用浏览器（browser-cdp）打开 URL，等待 JS 完全渲染后，将完整 HTML 保存到 `blogsummary/strategy/htmls/`，并重命名为简洁文件名。
 
 ## 依赖
 
@@ -21,15 +21,15 @@ description: "通过浏览器打开 URL，完整渲染 JS 后保存 HTML 到 str
 ### Step 1：准备工作
 
 **必须先确认项目路径**（按优先级）：
-1. 若当前 cwd 是 `strategy-digest/` 项目，直接使用
+1. 若当前 cwd 是项目根目录，直接使用
 2. 若 cwd 不在项目内，从命令行参数或用户消息中解析出项目路径
 3. 若无法确定，询问用户
 
 ```python
 import os
 # 确认项目根目录（strategy-digest/）
-PROJECT_ROOT = "/Volumes/SN770/workspace/quant/frame/strategy-digest"
-HTMLS_DIR = os.path.join(PROJECT_ROOT, "strategy", "htmls")
+PROJECT_ROOT = os.getcwd()  # 项目根目录
+HTMLS_DIR = os.path.join(PROJECT_ROOT, "blogsummary", "strategy", "htmls")
 os.makedirs(HTMLS_DIR, exist_ok=True)
 ```
 
@@ -167,7 +167,7 @@ print(f"   文件大小：{len(full_html):,} bytes")
 
 ### Step 9：更新索引（可选）
 
-若 `strategy/htmls/README.md` 存在，在末尾追加一行：
+若 `blogsummary/strategy/htmls/README.md` 存在，在末尾追加一行：
 
 ```
 | {标题} | {url} | {当前日期} |

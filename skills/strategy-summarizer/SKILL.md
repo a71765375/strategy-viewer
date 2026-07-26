@@ -4,8 +4,8 @@ description: "量化论坛帖子策略总结器。总入口：用户提供 URL +
 ---
 
 
-> **PROJECT_ROOT**: `/Volumes/SN770/workspace/quant/frame/strategy-digest`
-> 以下所有相对路径（`strategy/htmls/`、`strategy/docs/`、`notes/`）均相对于此目录。
+> **PROJECT_ROOT**: 项目根目录（`strategy-summary/`）
+> 以下所有相对路径（`blogsummary/strategy/htmls/`、`blogsummary/strategy/docs/`、`blogsummary/notes/`）均相对于此目录。
 
 # Strategy Summarizer — 策略总结总入口
 
@@ -113,7 +113,7 @@ full_html = html_result["outerHTML"]
 根据正文内容和用户提示词，生成 markdown 文档，写入：
 
 ```
-{strategy-digest}/strategy/docs/{清理后的标题}.md
+{PROJECT_ROOT}/blogsummary/strategy/docs/{清理后的标题}.md
 ```
 
 **文档结构**（默认，可根据提示词调整侧重点）：
@@ -160,7 +160,7 @@ def sanitize_filename(name: str) -> str:
 
 safe_name = sanitize_filename(title)
 import os
-html_path = f"/Volumes/SN770/workspace/quant/frame/strategy-digest/strategy/htmls/{safe_name}.html"
+html_path = os.path.join(PROJECT_ROOT, "blogsummary", "strategy", "htmls", f"{safe_name}.html")
 with open(html_path, "w", encoding="utf-8") as f:
     f.write(full_html)
 print(f"HTML已保存: {html_path}")
@@ -170,27 +170,27 @@ print(f"HTML已保存: {html_path}")
 
 **必须依次完成以下全部操作，缺一不可：**
 
-**8.1 更新 `strategy/htmls/README.md`**
+**8.1 更新 `blogsummary/strategy/htmls/README.md`**
 - 在表格末尾追加一行：策略名 | 文档路径 | HTML路径 | 主要因子 | 日期
 - 如果表格不存在则创建
 
-**8.2 更新 `notes/good_factor.md`**
+**8.2 更新 `blogsummary/notes/good_factor.md`**
 - 在末尾追加新策略段落（因子聚焦格式）
 - 段落末尾附上原始帖子 URL：`📎 原始帖子：{url}`
 - 追加格式参考文档末尾已有策略的格式
 
-**8.3 更新 `strategy/docs/README.md`（如果存在）**
+**8.3 更新 `blogsummary/strategy/docs/README.md`（如果存在）**
 - 在表格末尾追加一行
 
 **8.4 完成后自检清单（必须逐项核对）**
 完成 Step 8 后，必须执行以下自检，确认全部完成再进入 Step 9：
 
 ```
-✅ 1. strategy/htmls/ 目录下有对应 HTML 文件？
-✅ 2. strategy/docs/ 目录下有对应 md 文档？
-✅ 3. notes/good_factor.md 末尾已追加新策略段落？
-✅ 4. notes/good_factor.md 段落末尾包含原始帖子 URL？
-✅ 5. strategy/htmls/README.md 已更新索引表格？
+✅ 1. blogsummary/strategy/htmls/ 目录下有对应 HTML 文件？
+✅ 2. blogsummary/strategy/docs/ 目录下有对应 md 文档？
+✅ 3. blogsummary/notes/good_factor.md 末尾已追加新策略段落？
+✅ 4. blogsummary/notes/good_factor.md 段落末尾包含原始帖子 URL？
+✅ 5. blogsummary/strategy/htmls/README.md 已更新索引表格？
 ```
 
 如果有任一项为❌，立即修复后再继续。**不要跳过任何一项，也不要假设已经完成。**
@@ -208,7 +208,7 @@ print(f"HTML已保存: {html_path}")
 import os
 # 读取生成的文档路径
 import glob
-docs = sorted(glob.glob(f"/Volumes/SN770/workspace/quant/frame/strategy-digest/strategy/docs/*.md"))
+docs = sorted(glob.glob(f"{PROJECT_ROOT}/blogsummary/strategy/docs/*.md"))
 latest_md = docs[-1]  # 最新生成的文档
 
 msg = f"📄 {strategy_name} 已生成完整文档，详见附件"
@@ -228,15 +228,15 @@ print(f"消息内容: {msg}")
 
 ```
 📁 文件生成检查：
-✅ HTML文件存在？  → ls strategy/htmls/{sanitized_name}.html
-✅ MD文档存在？    → ls strategy/docs/{sanitized_name}.md
+✅ HTML文件存在？  → ls blogsummary/strategy/htmls/{sanitized_name}.html
+✅ MD文档存在？    → ls blogsummary/strategy/docs/{sanitized_name}.md
 
 📝 索引更新检查：
-✅ good_factor.md 已追加？ → tail -5 notes/good_factor.md
-✅ README.md 已更新？      → grep "{strategy_name}" strategy/htmls/README.md
+✅ blogsummary/notes/good_factor.md 已追加？ → tail -5 blogsummary/notes/good_factor.md
+✅ blogsummary/strategy/htmls/README.md 已更新？      → grep "{strategy_name}" blogsummary/strategy/htmls/README.md
 
 🔗 URL追踪检查：
-✅ good_factor.md 段落末尾有 URL？ → grep "bbs.quantclass.cn" notes/good_factor.md | tail -1
+✅ blogsummary/notes/good_factor.md 段落末尾有 URL？ → grep "bbs.quantclass.cn" blogsummary/notes/good_factor.md | tail -1
 ```
 
 **任一项不存在 → 立即修复 → 重新确认 → 再发微信**
@@ -284,10 +284,12 @@ print("全部完成")
 ## 文件路径速查
 
 ```
-strategy-digest/
-├── strategy/
-│   ├── docs/          # 生成的策略文档（.md）
-│   └── htmls/         # 抓取的HTML源文件
-└── notes/
-    └── good_factor.md # 因子聚焦笔记
+项目根目录/
+├── blogsummary/
+│   ├── strategy/
+│   │   ├── docs/          # 生成的策略文档（.md）
+│   │   └── htmls/         # 抓取的HTML源文件
+│   ├── notes/
+│   │   └── good_factor.md # 因子聚焦笔记
+│   └── factor/            # 因子索引库
 ```

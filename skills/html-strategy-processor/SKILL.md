@@ -1,11 +1,11 @@
 ---
 name: "html-strategy-processor"
-description: "Processes HTML strategy documents from quant forum. Invoke when user adds new HTML files to strategy/htmls/ directory or asks to process strategy HTML files."
+description: "Processes HTML strategy documents from quant forum. Invoke when user adds new HTML files to blogsummary/strategy/htmls/ directory or asks to process strategy HTML files."
 ---
 
 
-> **PROJECT_ROOT**: `/Volumes/SN770/workspace/quant/frame/strategy-digest`
-> 以下所有相对路径（`strategy/htmls/`、`strategy/docs/`、`notes/`）均相对于此目录。
+> **PROJECT_ROOT**: 项目根目录（`strategy-summary/`）
+> 以下所有相对路径（`blogsummary/strategy/htmls/`、`blogsummary/strategy/docs/`、`blogsummary/notes/`）均相对于此目录。
 
 # HTML Strategy Document Processor
 
@@ -14,7 +14,7 @@ This skill processes HTML strategy documents from quantitative trading forums an
 ## When to Invoke
 
 **Invoke this skill when:**
-- User adds new HTML files to `strategy/htmls/` directory
+  - User adds new HTML files to `blogsummary/strategy/htmls/` directory
 - User asks to process strategy HTML files
 - User mentions "处理HTML策略" or "生成策略文档"
 - User wants to update strategy documentation from HTML sources
@@ -51,8 +51,8 @@ This skill processes HTML strategy documents from quantitative trading forums an
 
 ### Step 1: Identify New HTML Files
 
-1. Read `strategy/htmls/README.md` to check existing indexed files
-2. List all HTML files in `strategy/htmls/` directory
+1. Read `blogsummary/strategy/htmls/README.md` to check existing indexed files
+2. List all HTML files in `blogsummary/strategy/htmls/` directory
 3. Compare to identify new unprocessed HTML files
 4. If no new files, inform user and exit
 
@@ -87,7 +87,7 @@ For each new HTML file, extract:
 
 ### Step 3: Generate Documentation
 
-Create structured markdown file in `strategy/docs/`:
+Create structured markdown file in `blogsummary/strategy/docs/`:
 
 **File naming:** Use strategy name, clean and concise
 - Example: `G-alpha-70_小市值成交额缩波策略.md`
@@ -134,7 +134,7 @@ Rename HTML file to clean, descriptive name:
 
 ### Step 5: Update Index File
 
-Update `strategy/htmls/README.md`:
+Update `blogsummary/strategy/htmls/README.md`:
 
 1. Add new entry to index table with:
    - Strategy name
@@ -147,7 +147,7 @@ Update `strategy/htmls/README.md`:
 
 ### Step 6: Update Notes (MOST IMPORTANT)
 
-Update `notes/good_factor.md`:
+Update `blogsummary/notes/good_factor.md`:
 
 **Format (SIMPLIFIED - Factor Focused):**
 ```markdown
@@ -176,8 +176,8 @@ Brief strategy description (1-2 sentences)
 - **参数**: Parameter (if any)
 
 ### 文件位置
-- 详细文档: strategy/docs/[strategy-name].md
-- HTML源文件: strategy/htmls/[strategy-name].html
+- 详细文档: blogsummary/strategy/docs/[strategy-name].md
+- HTML源文件: blogsummary/strategy/htmls/[strategy-name].html
 ```
 
 **IMPORTANT:**
@@ -253,17 +253,17 @@ Brief strategy description (1-2 sentences)
 
 **User adds new HTML file:**
 ```
-User: I added a new HTML file to strategy/htmls/
+User: I added a new HTML file to blogsummary/strategy/htmls/
 ```
 
 **Skill response:**
 1. Read README.md to check existing files
 2. Identify new file: `【任务】【Author】策略名称_收益_回撤.html`
 3. Extract strategy and factor information from HTML
-4. Create `strategy/docs/策略名称.md` (simplified version)
+4. Create `blogsummary/strategy/docs/策略名称.md` (simplified version)
 5. Rename HTML to `策略名称.html`
-6. Update `strategy/htmls/README.md` (index only)
-7. Update `notes/good_factor.md` (factor-focused summary)
+6. Update `blogsummary/strategy/htmls/README.md` (index only)
+7. Update `blogsummary/notes/good_factor.md` (factor-focused summary)
 8. Report completion to user
 
 ## Quality Checklist
