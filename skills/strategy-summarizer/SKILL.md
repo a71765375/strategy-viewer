@@ -241,6 +241,17 @@ print(f"消息内容: {msg}")
 
 **任一项不存在 → 立即修复 → 重新确认 → 再发微信**
 
+### Step 10：触发 factor-evaluator 更新因子索引
+
+新文档生成并确认无误后，将生成的 MD 文档路径传给 `factor-evaluator` skill：
+
+```
+新生成文档: blogsummary/strategy/docs/{sanitized_name}.md
+下步操作: 执行 factor-evaluator skill，参数为该相对路径
+```
+
+factor-evaluator 会自动完成查重、提取因子、更新 `blogsummary/factor/` 索引并 git 提交。
+
 ---
 
 ## 批量处理多个 URL
