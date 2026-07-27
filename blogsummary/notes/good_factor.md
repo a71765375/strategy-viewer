@@ -410,4 +410,4 @@
 
 ### 文件位置
 - 详细文档: strategy/docs/总市值成交额STD_回归动量选股策略.md
-- HTML源文件: strategy/htmls/总市值成交额STD_回归动量选股策略_北海鳄神.html
+- HTML源文件: strategy/htmls/北海鳄神-总市值成交额STD回归动量选股策略.html
