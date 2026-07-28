@@ -20,3 +20,4 @@
 | 走天涯-MCXLL多维度超跌反弹策略 | https://bbs.quantclass.cn/thread/86906 | 2026-07-28 |
 | Allen-缝合怪RankIC代理等5因子 | https://bbs.quantclass.cn/thread/86813 | 2026-07-28 |
 | 然又燃-26因子37万净值-过拟合警告 | https://bbs.quantclass.cn/thread/86883 | 2026-07-28 |
+| 金风重丰-小市值质量过滤择时策略 | https://bbs.quantclass.cn/thread/87707 | 2026-07-28 |
