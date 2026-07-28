@@ -16,3 +16,4 @@
 | 442次多因子组合搜索方法论 | strategy/docs/442次多因子组合搜索方法论.md | strategy/htmls/万家乐常卫全-442次多因子组合搜索.html | 成交额STD+小市值、流动性深度、TRIX、龙头股特征、净主动买入强度、成交额稳定性 | 2026-06-13 |
 | Morse-过拟合之基于Ret市值等11因子选股策略 | https://bbs.quantclass.cn/thread/87621 | 2026-07-28 |
 | 超-基于小市值上下影线比例等因子选股策略 | https://bbs.quantclass.cn/thread/87515 | 2026-07-28 |
+| Allen-基于Ret市值等6因子选股策略 | https://bbs.quantclass.cn/thread/86885 | 2026-07-28 |

@@ -4,3 +4,4 @@
 | 成交额STD+小市值(组合方法论) | 流动性深度;TRIX;龙头股;净主动买入强度;成交额稳定性;穿刺形态 | — | 1.31 | 成交额STD+小市值基础Calmar0.80，逐步添加至5维度最佳1.31 | [查看](../../../strategy/docs/442次多因子组合搜索方法论.md) | [原帖](https://bbs.quantclass.cn/thread/86784) |
 | 反转Ret | 156.41% | -35.35% | 4.42 | Morse | [查看](../../../../strategy/docs/过拟合之基于Ret市值等11因子选股策略.md) | [原帖](https://bbs.quantclass.cn/thread/87621) |
 | 反转Ret | 150.88% | -35.87% | 4.21 | *超* | [查看](../../../../strategy/docs/基于小市值上下影线比例等因子选股策略.md) | [原帖](https://bbs.quantclass.cn/thread/87515) |
+| 反转Ret | 146.22% | -36.57% | 4.0 | Allen_Yu | [查看](../../../../strategy/docs/基于Ret市值等6因子选股策略.md) | [原帖](https://bbs.quantclass.cn/thread/86885) |
