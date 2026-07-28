@@ -35,3 +35,7 @@
 | 小市值 | 星形反转; 成交额STD | 59.77% | 2.36 | 星形反转+成交额STD | [查看](../strategy/docs/常晋-星形反转成交额STD市值策略.md) | [原帖](https://bbs.quantclass.cn/thread/87361) |
 | 小市值 | 遍历单因子; 月份过滤 | 75.32% | 2.36 | 遍历市值×单因子 | [查看](../strategy/docs/boya-市值单因子月过滤策略.md) | [原帖](https://bbs.quantclass.cn/thread/87675) |
 | 微盘 | 市值双均线择时 | 55% | 2.33 | 双均线择时 | [查看](../strategy/docs/卡飞猫-市值双均线择时微盘策略.md) | [原帖](https://bbs.quantclass.cn/thread/86959) |
+| 多因子组合 | - | 57.65% | 2.3 | 交作业 | [查看](../strategy/docs/交作业-收益回撤比2.3策略.md) | [原帖](https://bbs.quantclass.cn/thread/86771) |
+| 小市值 | 低价; 远离低点 | 65.22% | 2.28 | 零一零一 | [查看](../strategy/docs/零一零一-小市值低价远离低点策略.md) | [原帖](https://bbs.quantclass.cn/thread/87050) |
+| 总市值对数 | 成交额稳定; 特质波动率; 索提诺比率 | 43.57% | - | 南客 | [查看](../strategy/docs/南客-市值成交额稳定特质波动率策略.md) | [原帖](https://bbs.quantclass.cn/thread/87673) |
+| 小市值/总市值对数 | 量价过滤; 择时 | 49.28% | 2.24 | 叶晓思 | [查看](../strategy/docs/叶晓思-总市值量价小市值复合择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/87311) |
