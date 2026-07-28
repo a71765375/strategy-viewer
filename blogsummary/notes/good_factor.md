@@ -596,3 +596,13 @@
 - **核心思路**：小市值+Alpha84双因子
 - **HTML**：`strategy/htmls/Hh-alpha84小市值策略.html`
 - **文档**：`strategy/docs/Hh-alpha84小市值策略.md`
+
+## 策略24：20天高点回落小市值策略
+- **作者**：John🍊
+- **来源**：https://bbs.quantclass.cn/thread/86919
+- **年化**：59.78% | **回撤**：-22.86% | **Calmar**：2.62
+- **主因子**：小市值
+- **副因子**：20天高点回落
+- **核心思路**：高点回落后买入小市值
+- **HTML**：`strategy/htmls/John-20天高点回落小市值.html`
+- **文档**：`strategy/docs/John-20天高点回落小市值策略.md`
