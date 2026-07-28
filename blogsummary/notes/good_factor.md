@@ -546,3 +546,13 @@
 - **核心思路**：小市值+Donchian择时，择时贡献Calmar从2.32→3.24
 - **HTML**：`strategy/htmls/Seth-市值Donchian枢轴点强度等因子.html`
 - **文档**：`strategy/docs/Seth-市值Donchian枢轴点强度策略.md`
+
+## 策略19：市值+成交额STD+流动性螺旋+成交量季节性
+- **作者**：不甜不放盐
+- **来源**：https://bbs.quantclass.cn/thread/86923
+- **年化**：49.92% | **回撤**：-15.97% | **Calmar**：3.13
+- **主因子**：小市值
+- **副因子**：成交额STD; 流动性螺旋风险_20日; 成交量季节性_月度
+- **核心思路**：4因子全升序，低风险策略，持仓5D选10只。
+- **HTML**：`strategy/htmls/不甜不放盐-市值成交额STD流动性螺旋因子.html`
+- **文档**：`strategy/docs/不甜不放盐-市值成交额STD流动性螺旋策略.md`

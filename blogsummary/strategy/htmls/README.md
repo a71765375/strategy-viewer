@@ -22,3 +22,4 @@
 | 然又燃-26因子37万净值-过拟合警告 | https://bbs.quantclass.cn/thread/86883 | 2026-07-28 |
 | 金风重丰-小市值质量过滤择时策略 | https://bbs.quantclass.cn/thread/87707 | 2026-07-28 |
 | Seth-市值Donchian枢轴点强度等因子 | https://bbs.quantclass.cn/thread/86842 | 2026-07-28 |
+| 不甜不放盐-市值成交额STD流动性螺旋因子 | https://bbs.quantclass.cn/thread/86923 | 2026-07-28 |
