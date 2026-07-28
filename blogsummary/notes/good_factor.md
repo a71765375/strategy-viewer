@@ -566,3 +566,13 @@
 - **核心思路**：Seth原版，与预处理线程thread/86842对应，参数略有调整
 - **HTML**：`strategy/htmls/Seth-非预处理版-市值Donchian枢轴点强度等因子.html`
 - **文档**：`strategy/docs/Seth-非预处理版-市值Donchian枢轴点强度策略.md`
+
+## 策略21：自研单因子Bias选股策略
+- **作者**：Link
+- **来源**：https://bbs.quantclass.cn/thread/87388
+- **年化**：71.27% | **回撤**：-25.7% | **Calmar**：2.77
+- **主因子**：Bias（自研）
+- **副因子**：无
+- **核心思路**：单因子Bias，自研因子全流程验证
+- **HTML**：`strategy/htmls/Link-自研单因子Bias.html`
+- **文档**：`strategy/docs/Link-自研单因子Bias策略.md`
