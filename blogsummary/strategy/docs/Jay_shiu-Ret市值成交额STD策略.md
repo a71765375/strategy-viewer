@@ -12,6 +12,7 @@ Seth老板：https://bbs.quantclass.cn/thread/86765，
 姜James老板：https://bbs.quantclass.cn/thread/86790
 在他们策略基础上进行了多因子组合、遍历等操作后，最终年化回撤比定格在2.38的成绩。
 策略名称：争霸
+回测区间：2009/01/01 - 2026/06/05
 
 ## 选股因子
 
