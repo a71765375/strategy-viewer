@@ -1,6 +1,6 @@
 # 策略详情
 
-**作者**: 大苗条
+**作者**: Yaya
 
 ## 策略逻辑
 
@@ -9,12 +9,14 @@
 ## 因子配置
 
 ```python
-(<span class="hljs-string">'市值'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span class="hljs-number">3</span>), (<span class="hljs-string">'放量上涨占比_20日'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span class="hljs-number">1</span>)
+(<span class="hljs-string">'成交额STD'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span>),
+        (<span class="hljs-string">'市值'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span class="hljs-number">1</span>),
 ```
 
 ## 策略参数
 ```python
 'hold_period'</span>: <span class="hljs-string">'W'</span>,
-      <span class="hljs-string">'select_num'</span>: <span class="hljs-number">10</span>,
-      "factor_list": [(<span class="hljs-string">'市值'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span cl
+    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">5</span>,
+    "factor_list": [
+        (<span class="hljs-string">'成交额STD'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-number">10</span>, <sp
 ```

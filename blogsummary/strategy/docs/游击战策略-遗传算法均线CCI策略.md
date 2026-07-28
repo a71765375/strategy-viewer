@@ -1,14 +1,7 @@
-# 遗传算法优化+均线+CCI+MACD择时策略
+# 策略详情
 
-**作者**: 游击战策略  
-**来源**: https://bbs.quantclass.cn/thread/87018  
+**作者**: 游击战策略
 
-## 策略概述
-遗传算法筛选因子+均线支撑/多头排列+成交额稳定性+CCI+MACD择时+市值过滤。
+## 策略逻辑
 
-## 回测表现
-| 指标 | 值 |
-|------|-----|
-| 年化收益 | 45.7% |
-| 最大回撤 | -18.46% |
-| Calmar | 2.48 |
+</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
