@@ -699,3 +699,28 @@
 - **核心思路**：资金流向监控+均线择时
 - **HTML**：`strategy/htmls/K无名-小市值中户散户净买入MA择时.html`
 - **文档**：`strategy/docs/K无名-小市值中户散户净买入MA择时策略.md`
+## 策略35：股基轮动策略
+- **来源**：https://bbs.quantclass.cn/thread/87819 | **作者**：锦衣夜行
+- **年化**：60.68% | **回撤**：-25.67% | **Calmar**：2.36
+- **主因子**：股基轮动 | **HTML**：`strategy/htmls/锦衣夜行-股基轮动.html`
+- **文档**：`strategy/docs/锦衣夜行-股基轮动策略.md`
+
+## 策略36：8因子选股策略
+- **来源**：https://bbs.quantclass.cn/thread/87004 | **作者**：萌新求带
+- **年化**：88.91% | **回撤**：-37.41% | **Calmar**：2.38
+- **主因子**：多因子组合 | **HTML**：`strategy/htmls/萌新求带-8因子.html`
+- **文档**：`strategy/docs/萌新求带-8因子策略.md`
+
+## 策略37：RSI超卖量价精选选股策略
+- **来源**：https://bbs.quantclass.cn/thread/87244 | **作者**：太认真
+- **年化**：67.99% | **回撤**：-28.58%
+- **主因子**：RSI超卖 | **副因子**：量价精选
+- **HTML**：`strategy/htmls/太认真-RSI超卖量价精选.html`
+- **文档**：`strategy/docs/太认真-RSI超卖量价精选策略.md`
+
+## 策略38：Ret+市值+成交额STD多因子组合策略
+- **来源**：https://bbs.quantclass.cn/thread/87831 | **作者**：Jay_shiu
+- **年化**：89.41% | **回撤**：-37.49%
+- **主因子**：Ret | **副因子**：小市值; 成交额STD
+- **HTML**：`strategy/htmls/Jay_shiu-Ret市值成交额STD.html`
+- **文档**：`strategy/docs/Jay_shiu-Ret市值成交额STD策略.md`

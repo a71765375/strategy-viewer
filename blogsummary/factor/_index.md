@@ -28,3 +28,7 @@
 | 小市值 | 涨跌幅; 成交额缩波; ROE; 归母净利润增速; 择时模式切换 | 68% | 2.45 | 基本面+技术面动态切换 | [查看](../strategy/docs/LK-小市值涨跌幅成交额缩波ROE策略.md) | [原帖](https://bbs.quantclass.cn/thread/87241) |
 | 小市值 | 量价背离; 布林带择时 | 71.64% | 2.42 | 量价背离+布林带 | [查看](../strategy/docs/Lucian-小市值量价背离布林带择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/86980) |
 | 小市值 | 中户散户净买入; MA择时 | 52.26% | 2.39 | 资金流向监控 | [查看](../strategy/docs/K无名-小市值中户散户净买入MA择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/87019) |
+| 股基轮动 | - | 60.68% | 2.36 | 股基轮动 | [查看](../strategy/docs/锦衣夜行-股基轮动策略.md) | [原帖](https://bbs.quantclass.cn/thread/87819) |
+| 多因子组合 | 8因子 | 88.91% | 2.38 | 萌新求带 | [查看](../strategy/docs/萌新求带-8因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/87004) |
+| RSI超卖 | 量价精选 | 67.99% | - | RSI超卖量价 | [查看](../strategy/docs/太认真-RSI超卖量价精选策略.md) | [原帖](https://bbs.quantclass.cn/thread/87244) |
+| Ret | 小市值; 成交额STD | 89.41% | - | Ret多因子 | [查看](../strategy/docs/Jay_shiu-Ret市值成交额STD策略.md) | [原帖](https://bbs.quantclass.cn/thread/87831) |

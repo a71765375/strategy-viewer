@@ -38,3 +38,7 @@
 | LK-小市值涨跌幅成交额缩波ROE | https://bbs.quantclass.cn/thread/87241 | 2026-07-28 |
 | Lucian-小市值量价背离布林带择时 | https://bbs.quantclass.cn/thread/86980 | 2026-07-28 |
 | K无名-小市值中户散户净买入MA择时 | https://bbs.quantclass.cn/thread/87019 | 2026-07-28 |
+| 锦衣夜行-股基轮动 | https://bbs.quantclass.cn/thread/87819 | 2026-07-28 |
+| 萌新求带-8因子 | https://bbs.quantclass.cn/thread/87004 | 2026-07-28 |
+| 太认真-RSI超卖量价精选 | https://bbs.quantclass.cn/thread/87244 | 2026-07-28 |
+| Jay_shiu-Ret市值成交额STD | https://bbs.quantclass.cn/thread/87831 | 2026-07-28 |
