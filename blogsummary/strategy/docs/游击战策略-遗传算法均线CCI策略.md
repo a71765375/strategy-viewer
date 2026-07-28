@@ -1,7 +1,58 @@
-# 策略详情
+# 游击战策略-遗传算法均线CCI
 
 **作者**: 游击战策略
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+一、策略逻辑
+按照之前的遗传规划内容，加入了择时和过滤因子进行进一步的组合，自己让AI写的MACD择时
+二、策略代码
+见附件
+三、策略回测表现
+3.1 回测资金曲线
+3.2 策略回测表现
+累积净值
+年化收益
+最大回撤
+最大回撤开始时间
+最大回撤结束时间
+年化收益/回撤比
+盈利周期数
+亏损周期数
+每周期平均收益
+盈亏收益比
+单周期最大盈利
+单周期大亏损
+最大连续盈利周期数
+最大连续亏损周期数
+收益率标准差
+四、总结
+MACD择时.py
+CCI_20日.py
+成交额稳定性_20日.py
+均线支撑强度_20日.py
+均线多头排列度_5_10_20.py
+市值.py
+上一页
+下一页
+取 消
+确 定
+阅读 53
+0人点赞
+暂无评论
+还能输入40000个字
+发 布
+编辑评论
+一、策略逻辑
+
+## 回测表现
+
+| 指标 | 值 |
+|------|-----|
+| Calmar | 2.48 |
+| 年化收益 | 45.7% |
+| 最大回撤 | 18.46% |
+
+## 可取之处
+
+年化45.7%表现稳健。 Calmar 2.48表现良好。

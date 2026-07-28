@@ -1,35 +1,65 @@
-# 策略详情
+# 太认真-RSI超卖量价精选
 
 **作者**: 太认真
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+策略解析：「RSI超卖量价精选V2」
+一、策略一句话定位:
+在全市场最小的 30 只股票中，每 3 天选出 RSI 最低且成交额最分散的 3 只，用 MA20 均线保护回撤。
+二、策略逻辑链:
+① 市值过滤 → 微盘股池（高beta，高弹性）
+② RSI(6)低 → 短期超卖，恐慌抛售接近尾声
+③ 成交额分散 → 无主力资金异动，是自然下跌而非出货
+④ 二者共振 →「被错杀的小盘冷门股」→ 反弹概率大
+⑤ MA20再择时 → 市场系统性下跌时空仓，控制回撤
+⑥ 3D调仓 + 仅持3只 → 高换手、高集中度，放大alpha
+三、这版策略的优缺点
+优势 ：
+极度精简，2因子无多重共线性问题
+RSI周期6比10更灵敏，更快捕捉超卖反转
+成交额集中度参数化为10日窗口，与3D调仓周期匹配
+仅持3只，alpha高度集中
+风险 ：
+仅2因子，信号来源单一，特定市场风格下可能失效
+select_num=3 极度集中，单只股票暴雷影响大
+市值过滤 rank&lt;=30 范围较小（全市场最小的30只），可能不够聚焦
+四、资金曲线截图
+五:config配置:
+微信: xbx8662
+# 1️⃣ 回测配置
+# (可选) 财务数据，全量数据下载链接：https://www.quantclass.cn/data/stock/stock-fin-data-xbx
+# 3️⃣ 策略配置
+'RSI超卖量价精选V2'
+# ===== 核心信号：RSI 超卖反转（权重4，主导信号）=====
+'成交额集中度'
+# 微盘股聚焦：仅保留市值最小的25只（比之前更聚焦）
+'市值'
+# 上市至今交易天数
+#excluded_boards = ["cyb", "kcb", "bj"]  # 同时过滤创业板、科创板和北交所
+# - 修改hold_period之后，需要执行step2因子计算，不需要再次准备数据
+# - 修改select_num之后，只需要再执行step3选股即可，不需要准备数据和计算因子
+# - 修改factor_list之后，需要执行step2因子计算，不需要再次准备数据
+# - 修改filter_list之后，需要执行step2因子计算，不需要再次准备数据
+# 用于在回测完成后，对资金曲线进行二次择时，生成动态杠杆
+# 可以参考的择时方法：
+#   - 移动平均线：根据资金曲线与移动平均线的关系进行择时
+
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| RSI | 升序（越小越好） | 6 | 0.5 |
+| 成交额集中度 | 升序（越小越好） | 10 | 0.5 |
 
 ## 回测表现
 
 | 指标 | 值 |
 |------|-----|
-| <div style="position: relative; display: block;"><p>累积净值 | 8425.44<br> |
-| 亏损周期数 | 2670.0<br> |
-| 年化收益 | 67.99%<br> |
-| 年化收益/回撤比 | 2.38<br> |
-| 收益率标准差 | 1.94%<br> |
-| 最大回撤 | -28.58%<br> |
-| 最大回撤开始时间 | 2017-01-05 00:00:00<br> |
-| 最大回撤结束时间 | 2018-09-03 00:00:00<br> |
-| 最大连续亏损周期数 | 54.0<br> |
-| 最大连续盈利周期数 | 13.0<br> |
-| 每周期平均收益 | 0.23%<br> |
-| 盈亏收益比 | 2.72<br> |
-| 盈利周期数 | 1557.0<br> |
-| 胜率 | 36.83%<br> |
+| 年化收益 | 67.99% |
+| 最大回撤 | -28.58% |
+| 胜率 | 36.83% |
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'3D'</span>,
-    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">3</span>,
-    <span class="hljs-string">"factor_list"</span>: [
-        <span class="hljs-comment"># ===== 核心信号：RSI 超卖反转（权重4，主导信号）=====</span>
-        (<span clas
-```
+## 可取之处
+
+年化67.99%，收益水平优秀。 成交额类因子捕捉市场关注度变化，ICIR通常较高。 超卖/RSI择时适合震荡市，但在单边下跌中需配合风控。 仅2个因子，简洁型策略，过拟合风险相对较低。

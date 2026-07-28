@@ -1,33 +1,65 @@
-# 策略详情
+# boya-市值单因子月过滤
 
 **作者**: boya🤔
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+一、策略思路
+参考了lava老板给出的
+因子分析综合汇总表
+，在官方给的
+寻找最优参数.py
+文件基础上进行修改，遍历了市值因子与其他单因子等权组合的回测结果，选取了年化回撤比最高的一条。官方给的因子库在遍历过程中部分因子报错，已进行了修改并在附件附上，所有市值+单因子遍历结果也一起放到附件里供大家参考。
+寻找最优参数.py文件
+微信: xbx8662
+program.step1_整理数据
+program.step2_计算因子
+program.step3_选股
+program.step4_实盘模拟
+# ** 脚本运行前配置 **
+# 主要是解决各种各样奇怪的问题们
+# 过滤一下warnings，不要吓到老实人
+# pandas相关的显示设置，基础课程都有介绍
+# 当列太多时不换行
+# 设置命令行输出时的列对齐功能
+# 小组框架特定代码，针对再择时做的优化
+寻找最优参数
+# 1. 准备工作
+'参数遍历开始'
+f'参数组合
+'✅ 一共需要回测的参数组合数：{}'
+'分割线'
+# 生成一个conf，拥有所有策略的因子
+# 2. 读取回测所需数据，并做简单的预处理
+# 读取数据
+# 3. 计算因子
+# 然后用这个配置计算的话，我们就能获得所有策略的因子的结果，存储在 `data/cache/all_factors_df.pkl`
+# 4. 选股
+# - 注意：选完之后，每一个策略的选股结果会被保存到硬盘
+'市值'
+'成交额STD'
+'成交量季节性_月度'
+'EMA距离_20日'
+'净主动买入强度_20日'
+'协整偏离度_20日'
+'RogersSatchell波动率_20日'
+'GarmanKlass波动率_20日'
+
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| 市值 | 升序（越小越好） | None | 1 |
+| 流通市值对数 | 升序（越小越好） | None | 1 |
 
 ## 回测表现
 
 | 指标 | 值 |
 |------|-----|
-| <div style="position: relative; display: block;"><p>累积净值 | 15009.07<br> |
-| 亏损周期数 | 2096.0<br> |
-| 年化收益 | 75.32%<br> |
-| 年化收益/回撤比 | 2.36<br> |
-| 收益率标准差 | 1.94%<br> |
-| 最大回撤 | -31.95%<br> |
-| 最大回撤开始时间 | 2024-04-03 00:00:00<br> |
-| 最大回撤结束时间 | 2024-07-24 00:00:00<br> |
-| 最大连续亏损周期数 | 26.0<br> |
-| 最大连续盈利周期数 | 11.0<br> |
-| 每周期平均收益 | 0.25%<br> |
-| 盈亏收益比 | 1.5<br> |
-| 盈利周期数 | 2064.0<br> |
-| 胜率 | 49.60%<br> |
+| Calmar | 2.36 |
+| 年化收益 | 75.32% |
+| 最大回撤 | 31.95% |
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'5D'</span>,  <span class="hljs-comment"># 持仓周期，W 代表周，M 代表月</span>
-            <span class="hljs-string">'select_num'</span>: <span class="hljs-number">5</span>,  <span class="hljs-comment"># 选股数量，可以是整数，也可以是小数，比如 0.1 表示选取 10% 的股票</span>
-            <sp
-```
+## 可取之处
+
+年化75.32%，收益水平优秀。 Calmar 2.36表现良好。 小市值为核心因子，享受A股小盘溢价。 仅2个因子，简洁型策略，过拟合风险相对较低。

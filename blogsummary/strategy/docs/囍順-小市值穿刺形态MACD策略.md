@@ -1,7 +1,58 @@
-# 策略详情
+# 囍順-小市值穿刺形态MACD
 
 **作者**: 囍順
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+基于小市值，捕捉短期反转/突破信号，确认中期趋势方向，减少假信号。
+二、策略描述
+为了减少回撤，根据个人经验，避开1月（年报暴雷）、4月（一季报+年报密集期）、7月（中报预告）等月份，缺点是没有资金流向相关因子，因为没试出来有所增益的，最后以移动平均线进行择时。
+三、策略（见附件）
+四、策略回测表现
+1.回测资金曲线
+2.策略回测表现
+累积净值
+年化收益
+最大回撤
+最大回撤开始时间
+最大回撤结束时间
+年化收益/回撤比
+盈利周期数
+亏损周期数
+每周期平均收益
+盈亏收益比
+单周期最大盈利
+单周期大亏损
+最大连续盈利周期数
+最大连续亏损周期数
+收益率标准差
+上一页
+下一页
+取 消
+确 定
+阅读 56
+0人点赞
+暂无评论
+还能输入40000个字
+发 布
+编辑评论
+复制链接
+微信分享
+评论0
+投籽0
+葫芦奖励
+选择收藏夹
+帖子隐藏
+取 消
+
+## 回测表现
+
+| 指标 | 值 |
+|------|-----|
+| 年化收益 | 45.76% |
+| 最大回撤 | -20.39% |
+| 胜率 | 36.71% |
+
+## 可取之处
+
+年化45.76%表现稳健。

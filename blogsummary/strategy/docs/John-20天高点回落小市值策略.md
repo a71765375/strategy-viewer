@@ -1,32 +1,65 @@
-# 策略详情
+# John-20天高点回落小市值
 
 **作者**: John🍊
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+一、策略思路
+小市值策略，追高的基本清零，所以几乎都是找跌多了的博它反弹。反弹时间是短暂的，小市值策略持股天数越少收益越大，就选3D。短期跌得越多，反弹机会越大，就选20天从高点回落幅度作为排序因子。
+二、策略描述
+20日高点回落幅度、市值二个因子等权排序，过滤掉市值30亿以上的，排除北交所、创业板和科创板。
+策略名称：策略
+回测时间：2009-01-01到2026-06-12
+持股数量：10
+使用资金曲线的13日均线作择时，均线向上持仓，均线拐头卖出。
+三、策略代码
+3.1 config代码
+微信: xbx8662
+# 1️⃣ 回测配置
+# (可选) 财务数据，全量数据下载链接：https://www.quantclass.cn/data/stock/stock-fin-data-xbx
+# 3️⃣ 策略配置
+'策略'
+# 策略名
+# 选股因子列表
+# 因子名称（与 '因子库' 文件中的名称一致），排序方式（True 为升序，False 为降序），因子参数，因子权重
+'高点回落'
+'市值'
+# 可添加多个选股因子
+'月份'
+# 不在1月份选股
+'市值'
+'成交额STD'
+'交易所'
+'收盘价'
+'换手率均值_20日'
+'光头阴线'
+'换手率变异系数_20日'
+# 过滤因子列表
+# 上市至今交易天数
+# excluded_boards = ["cyb", ]  # 过滤板块，默认不过滤
+# 同时过滤创业板和科创板和北交所
+# - 修改hold_period之后，需要执行step2因子计算，不需要再次准备数据
+# - 修改select_num之后，只需要再执行step3选股即可，不需要准备数据和计算因子
+# - 修改factor_list之后，需要执行step2因子计算，不需要再次准备数据
+# - 修改filter_list之后，需要执行step2因子计算，不需要再次准备数据
+# 用于在回测完成后，对资金曲线进行二次择时，生成动态杠杆
+# 可以参考的择时方法：
+
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| 高点回落 | 升序（越小越好） | 20 | 1 |
+| 市值 | 升序（越小越好） | None | 1 |
 
 ## 回测表现
 
 | 指标 | 值 |
 |------|-----|
-| <div style="position: relative; display: block;"><p>累积净值 | 3383.94<br> |
-| 亏损周期数 | 2604.0<br> |
-| 年化收益 | 59.78%<br> |
-| 年化收益/回撤比 | 2.62<br> |
-| 收益率标准差 | 1.51%</p><img class="thread-content-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAAADCAYAAABifbbmAAAAbklEQVR4AezSSQqAMBBE0eD97+wA/YIUBDeSVYvyrSEJNDnGGOf7O+vhlZzgJ2ehfuQl5xl0Un9FfXnq9DOnV7Q+qc9PzU9mj8bs03Lk41++/fBrXzlal8w8tf5z8e7/fnsCeyfQF2/vvPu0msAFAAD//xRT2B4AAAAGSURBVAMA72lisg3cESoAAAAASUVORK5CYII="></div> |
-| 最大回撤 | -22.86%<br> |
-| 最大回撤开始时间 | 2015-08-20 00:00:00<br> |
-| 最大回撤结束时间 | 2015-08-28 00:00:00<br> |
-| 最大连续亏损周期数 | 76.0<br> |
-| 最大连续盈利周期数 | 17.0<br> |
-| 每周期平均收益 | 0.20%<br> |
-| 盈亏收益比 | 2.61<br> |
-| 盈利周期数 | 1608.0<br> |
-| 胜率 | 38.17%<br> |
+| Calmar | 2.62 |
+| 年化收益 | 59.78% |
+| 最大回撤 | 22.86% |
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'3D'</span>, &nbsp;<span class="hljs-comment"># 持仓周期，W 代表周，M 代表月，还支持日频：3D、5D、10D</span>
- &nbsp; &nbsp;<span class="hljs-string">'select_num'</span>: <span class="hljs-number">10</span>, &nbsp;<span class="hljs-comment"># 选股数量，可以是整数，也可以是小数，比如 0.1 表示选取 1
-```
+## 可取之处
+
+年化59.78%，收益水平优秀。 Calmar 2.62表现良好。 小市值为核心因子，享受A股小盘溢价。 仅2个因子，简洁型策略，过拟合风险相对较低。

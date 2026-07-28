@@ -1,14 +1,73 @@
-# 策略详情
+# LK-小市值涨跌幅成交额缩波ROE
 
 **作者**: L.K
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+一、策略思路评价
+1.1 策略定位
+名称：基于小市值，近期涨跌幅和成交额缩波因子-filter-ROE,归母净利润增速的择时动态模式切换
+核心逻辑：小市值 + 近期涨跌幅+ 成交额缩波，择时：动态模式切换（参考走天涯大佬的择时策略）
+回测时间：2009-01-01~2026-06-05
+最优因子参数，包括择时参数 都是通过beam search+lsh+细网格搜索出来的。
+'市值-近期涨跌-成交缩波-5D-num10-beam策略NO.2-择时-动态模式切换-NO.1'
+# 策略名
+# 选股因子列表
+'成交额缩波因子'
+'近期涨跌幅'
+'市值'
+'单季'
+'归母净利润同比增速'
+'收盘价'
+# 股价不低于3元，避免低价垃圾股
+'收盘价'
+# 股价不高于40元，控制价格区间
+'剔除ST'
+# 剔除ST、*ST等风险警示股票
+# 过滤因子列表
+# 上市至今交易天数
+# 过滤板块，默认不过滤
+"动态模式切换"
+二 回测结果
+累积净值
+年化收益
+最大回撤
+最大回撤开始时间
+最大回撤结束时间
+年化收益/回撤比
+盈利周期数
+亏损周期数
+每周期平均收益
+盈亏收益比
+单周期最大盈利
+单周期大亏损
+最大连续盈利周期数
+最大连续亏损周期数
+收益率标准差
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'5D'</span>,  <span class="hljs-comment"># 持仓周期，W 代表周，M 代表月，还支持日频：3D、5D、10D</span>
-    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">10</span>,  <span class="hljs-comment"># 选股数量，可以是整数，也可以是小数，比如 0.1 表示选取 10% 的股票</span>
-    <s
-```
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| 成交额缩波因子 | 升序（越小越好） | (
+12 | 60 |
+| 近期涨跌幅 | 升序（越小越好） | 5 | 0.3 |
+| 市值 | 升序（越小越好） | None | 1.0 |
+
+## 过滤条件
+
+- **收盘价**: 参数='', 条件=val:&gt;=3
+- **收盘价**: 参数='', 条件=val:&lt;=40
+- **剔除ST**: 参数='', 条件=val:==1
+
+## 回测表现
+
+| 指标 | 值 |
+|------|-----|
+| Calmar | 2.45 |
+| 年化收益 | 68.00% |
+| 最大回撤 | 27.78% |
+
+## 可取之处
+
+年化68.0%，收益水平优秀。 Calmar 2.45表现良好。 小市值为核心因子，享受A股小盘溢价。 成交额类因子捕捉市场关注度变化，ICIR通常较高。 仅3个因子，简洁型策略，过拟合风险相对较低。

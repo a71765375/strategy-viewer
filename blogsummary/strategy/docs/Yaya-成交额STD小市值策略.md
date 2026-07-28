@@ -1,22 +1,64 @@
-# 策略详情
+# Yaya-成交额STD小市值
 
 **作者**: Yaya
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+一、策略逻辑
+二、策略描述
+回测时间：2009-01-01到2026-06-05
+三、策略代码
+'小市值_成交额STD'
+'成交额STD'
+'市值'
+四、策略回测表现
+五、总结
+完全小白lol 先交作业，等结营直播学下因子组合再来优化
+取 消
+确 定
+阅读 38
+0人点赞
+暂无评论
+还能输入40000个字
+发 布
+编辑评论
+一、策略逻辑
+二、策略描述
+三、策略代码
+四、策略回测表现
+五、总结
+复制链接
+微信分享
+评论0
+投籽0
+葫芦奖励
+选择收藏夹
+帖子隐藏
+取 消
+确 定
+首页置顶
+取 消
+确 定
+帖子点评
+取 消
+保 存
+短信验证
 
-## 因子配置
+## 选股因子
 
-```python
-(<span class="hljs-string">'成交额STD'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-number">10</span>, <span class="hljs-number">1</span>),
-        (<span class="hljs-string">'市值'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-keyword">None</span>, <span class="hljs-number">1</span>),
-```
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| 成交额STD | 升序（越小越好） | 10 | 1 |
+| 市值 | 升序（越小越好） | None | 1 |
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'W'</span>,
-    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">5</span>,
-    "factor_list": [
-        (<span class="hljs-string">'成交额STD'</span>, <span class="hljs-keyword">True</span>, <span class="hljs-number">10</span>, <sp
-```
+## 回测表现
+
+| 指标 | 值 |
+|------|-----|
+| Calmar | 2.22 |
+| 年化收益 | 57.5% |
+| 最大回撤 | 25.9% |
+
+## 可取之处
+
+年化57.5%，收益水平优秀。 Calmar 2.22表现良好。 小市值为核心因子，享受A股小盘溢价。 成交额类因子捕捉市场关注度变化，ICIR通常较高。 仅2个因子，简洁型策略，过拟合风险相对较低。

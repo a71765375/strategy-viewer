@@ -1,21 +1,62 @@
-# 策略详情
+# Allen-缝合怪RankIC代理等5因子
 
 **作者**: Allen
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+小白的心路历程：作为一个小白，我的想法很简单，先把所有的单个因子跑一遍，找到最强的因子，再去遍历组合。第一轮找到了【RankIC代理_20日】这个因子，感觉它特别强。然后它后面几个因子都是市值类因子，既然已知小市值在过去几年特别强，所以就先不管。以 RankIC 为一个基点开始做各种各样的尝试，首先看单因子结果里最强和最弱的因子，因为邢大讲过，最强的因子它的有效性可以去验证，最弱的因子可以用来做排
+6月15日更新：今天开始对因子做减法，效果变好，减去了射击之星和流动性深度，累计净值从5W+扩大到8.5W，年化92%+，回撤降一点到47.48%，下一步方向加择时
+一、策略简介
+策略因子：
+1.RankIC代理_20日,
+2.市值,
+3.倒锤子线信号，
+4.N字突破上涨,
+5.射击之星信号，
+6.成交额STD10，
+7.流动性深度_20日
+回测区间：2009/01/01 – 2026/06/05
+以上5个因子都是选择升序，其中倒锤子线信号、N字突破上涨、
+射击之星信号
+是比较意外的选项，都是用来去除噪声的，本来以为这些形态是要选入比较好，经过测试到都是排除后效果更好。这个策略的整体思路就是找那些被遗忘打入冷宫的超跌微盘，和刑大讲的魔改方案2的思路很像。
+二、资金曲线
+三、策略评价和历年收益
+以下是减因子前后对比图，26年的收益略有提升，2017年变为了负值
+四、关于剔除1月的逻辑
+我这个策略在回测到4000多倍的时候做了个月度分析，发现1月和12月的收益是最差的，但只有1月的收益均值是负数，减去1月选股后收益直接到6000多倍，增加了50%
+后来让AI根据实事总结了三点，我觉得有一定道理
+1. 机构调仓卖出压力
+每年1月是公募基金调仓换股高峰期。上一年表现差的小盘股，会被基金经理在1月集中卖出（换到新年看好的方向）。我们的策略选的恰恰是"上一年跌最惨的小盘"——正好是机构1月最想扔的那批票。1月建仓=接机构扔下来的刀。
+2. 年报预告截止日压力
+A股规则：年报预计亏损或业绩大幅变动的，必须在1月31日前预告。小盘股是业绩雷的重灾区。1月持有小盘=持有一堆可能在1月31日前炸雷的票。
+3. 春节前资金面紧张
+春节前（通常在1月下旬~2月初），机构和散户都会取钱过年，市场整体流动性收紧。小盘股流动性本就差，春节前容易被"踩踏式卖出"砸出深坑。
+五、策略代码
+详见附件 config.py
+'name': '缝合怪',  # 策略名
+"factor_list": [  # 选股因子列表
+因子名称（与 '因子库' 文件中的名称一致），排序方式（True 为升序，False 为降序），因子参数，因子权重
+('RankIC代理_20日', True, None, 0.5),
+('市值',True, None, 2.5),
+('倒锤子线信号', True, None, 1),
+('N字突破上涨', True, None, 1),
+('射击之星信号', True, 60, 1),
+('成交额STD', True, 10, 1),
+('流动性深度_20日', True, None, 1),
+('月份', [1], 'val:!=1'),  # 剔除1月选股,
 
-## 因子配置
+## 选股因子
 
-```python
-# 选股因子列表</p><img class="thread-content-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAAADCAYAAABifbbmAAAAbklEQVR4AezSSQqAMBBE0eD97+wA/YIUBDeSVYvyrSEJNDnGGOf7O+vhlZzgJ2ehfuQl5xl0Un9FfXnq9DOnV7Q+qc9PzU9mj8bs03Lk41++/fBrXzlal8w8tf5z8e7/fnsCeyfQF2/vvPu0msAFAAD//xRT2B4AAAAGSURBVAMA72lisg3cESoAAAAASUVORK5CYII="></div>
-<div style="position: relative; display: block;"><p>** 因子格式说明 **</p><img
-```
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| RankIC代理_20日 | 升序（越小越好） | None | 0.5 |
+| 市值 | 升序（越小越好） | None | 2.5 |
+| 倒锤子线信号 | 升序（越小越好） | None | 1 |
+| N字突破上涨 | 升序（越小越好） | None | 1 |
+| 射击之星信号 | 升序（越小越好） | 60 | 1 |
+| 成交额STD | 升序（越小越好） | 10 | 1 |
+| 流动性深度_20日 | 升序（越小越好） | None | 1 |
 
-## 策略参数
-```python
-'hold_period': '3D',  # 持仓周期，W 代表周，M 代表月，还支持日频：3D、5D、10D<br>
-'select_num': 2,  # 选股数量，可以是整数，也可以是小数，比如 0.1 表示选取 10% 的股票<br>
-"factor_list": [  # 选股因子列表</p><img class="thread-content-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAAADCAYAAABifbbmAAAAbklEQVR4AezSSQqAMBBE0eD97+wA/YIUBDeSVYvy
-```
+## 可取之处
+
+小市值为核心因子，享受A股小盘溢价。 成交额类因子捕捉市场关注度变化，ICIR通常较高。
