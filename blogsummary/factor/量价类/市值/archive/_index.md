@@ -3,3 +3,4 @@
 | 小市值+成交额缩波 | 超跌 | 135.34% | 3.43 | 总市值×成交额10日STD乘积升序，选小市值冷门股 | [查看](../../../strategy/docs/总市值成交额STD_回归动量选股策略.md) | [原帖](https://bbs.quantclass.cn/thread/87508) |
 | 成交额STD+小市值(组合方法论) | 流动性深度;TRIX;龙头股;净主动买入强度;成交额稳定性;穿刺形态 | — | 1.31 | 成交额STD+小市值基础，422次回测找最优组合路径 | [查看](../../../strategy/docs/442次多因子组合搜索方法论.md) | [原帖](https://bbs.quantclass.cn/thread/86784) |
 | 小市值（副） | 156.41% | -35.35% | 4.42 | Morse | [查看](../../../../strategy/docs/过拟合之基于Ret市值等11因子选股策略.md) | [原帖](https://bbs.quantclass.cn/thread/87621) |
+| 小市值（副） | 150.88% | -35.87% | 4.21 | *超* | [查看](../../../../strategy/docs/基于小市值上下影线比例等因子选股策略.md) | [原帖](https://bbs.quantclass.cn/thread/87515) |
