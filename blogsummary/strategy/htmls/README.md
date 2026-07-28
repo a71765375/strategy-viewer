@@ -42,3 +42,7 @@
 | 萌新求带-8因子 | https://bbs.quantclass.cn/thread/87004 | 2026-07-28 |
 | 太认真-RSI超卖量价精选 | https://bbs.quantclass.cn/thread/87244 | 2026-07-28 |
 | Jay_shiu-Ret市值成交额STD | https://bbs.quantclass.cn/thread/87831 | 2026-07-28 |
+| 常晋-星形反转成交额STD市值 | https://bbs.quantclass.cn/thread/87361 | 2026-07-28 |
+| boya-市值单因子月过滤 | https://bbs.quantclass.cn/thread/87675 | 2026-07-28 |
+| 小市值在哪个板块更有效（非策略讨论） | https://bbs.quantclass.cn/thread/87847 | 2026-07-28 |
+| 卡飞猫-市值双均线择时微盘 | https://bbs.quantclass.cn/thread/86959 | 2026-07-28 |

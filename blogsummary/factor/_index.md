@@ -32,3 +32,6 @@
 | 多因子组合 | 8因子 | 88.91% | 2.38 | 萌新求带 | [查看](../strategy/docs/萌新求带-8因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/87004) |
 | RSI超卖 | 量价精选 | 67.99% | - | RSI超卖量价 | [查看](../strategy/docs/太认真-RSI超卖量价精选策略.md) | [原帖](https://bbs.quantclass.cn/thread/87244) |
 | Ret | 小市值; 成交额STD | 89.41% | - | Ret多因子 | [查看](../strategy/docs/Jay_shiu-Ret市值成交额STD策略.md) | [原帖](https://bbs.quantclass.cn/thread/87831) |
+| 小市值 | 星形反转; 成交额STD | 59.77% | 2.36 | 星形反转+成交额STD | [查看](../strategy/docs/常晋-星形反转成交额STD市值策略.md) | [原帖](https://bbs.quantclass.cn/thread/87361) |
+| 小市值 | 遍历单因子; 月份过滤 | 75.32% | 2.36 | 遍历市值×单因子 | [查看](../strategy/docs/boya-市值单因子月过滤策略.md) | [原帖](https://bbs.quantclass.cn/thread/87675) |
+| 微盘 | 市值双均线择时 | 55% | 2.33 | 双均线择时 | [查看](../strategy/docs/卡飞猫-市值双均线择时微盘策略.md) | [原帖](https://bbs.quantclass.cn/thread/86959) |

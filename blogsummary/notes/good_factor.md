@@ -724,3 +724,23 @@
 - **主因子**：Ret | **副因子**：小市值; 成交额STD
 - **HTML**：`strategy/htmls/Jay_shiu-Ret市值成交额STD.html`
 - **文档**：`strategy/docs/Jay_shiu-Ret市值成交额STD策略.md`
+## 策略39：星形反转+成交额STD+总市值对数
+- **来源**：https://bbs.quantclass.cn/thread/87361 | **作者**：常晋
+- **年化**：59.77% | **回撤**：-25.33% | **Calmar**：2.36
+- **主因子**：小市值 | **副因子**：星形反转信号; 成交额STD
+- **HTML**：`strategy/htmls/常晋-星形反转成交额STD市值.html`
+- **文档**：`strategy/docs/常晋-星形反转成交额STD市值策略.md`
+
+## 策略40：遍历市值×单因子+月份过滤
+- **来源**：https://bbs.quantclass.cn/thread/87675 | **作者**：boya🤔
+- **年化**：75.32% | **回撤**：31.95%(?) | **Calmar**：2.36
+- **主因子**：小市值 | **副因子**：遍历单因子; 月份过滤
+- **HTML**：`strategy/htmls/boya-市值单因子月过滤.html`
+- **文档**：`strategy/docs/boya-市值单因子月过滤策略.md`
+
+## 策略41：市值双均线择时微盘选股策略
+- **来源**：https://bbs.quantclass.cn/thread/86959 | **作者**：卡飞猫
+- **年化**：55% | **回撤**：-23.62% | **Calmar**：2.33
+- **主因子**：微盘 | **副因子**：市值双均线择时
+- **HTML**：`strategy/htmls/卡飞猫-市值双均线择时微盘.html`
+- **文档**：`strategy/docs/卡飞猫-市值双均线择时微盘策略.md`
