@@ -26,3 +26,4 @@
 | Seth-非预处理版-市值Donchian枢轴点强度等因子 | https://bbs.quantclass.cn/thread/86765 | 2026-07-28 |
 | Link-自研单因子Bias | https://bbs.quantclass.cn/thread/87388 | 2026-07-28 |
 | 初学-回调缩波 | https://bbs.quantclass.cn/thread/87785 | 2026-07-28 |
+| Hh-alpha84小市值策略 | https://bbs.quantclass.cn/thread/87088 | 2026-07-28 |

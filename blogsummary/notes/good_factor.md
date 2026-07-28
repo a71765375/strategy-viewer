@@ -586,3 +586,13 @@
 - **核心思路**：震荡小+回调+成交缩波的小市值
 - **HTML**：`strategy/htmls/初学-回调缩波.html`
 - **文档**：`strategy/docs/初学-回调缩波策略.md`
+
+## 策略23：小市值+Alpha84因子选股策略
+- **作者**：Hh
+- **来源**：https://bbs.quantclass.cn/thread/87088
+- **年化**：79.78% | **回撤**：-30.09% | **Calmar**：2.65
+- **主因子**：小市值
+- **副因子**：Alpha84
+- **核心思路**：小市值+Alpha84双因子
+- **HTML**：`strategy/htmls/Hh-alpha84小市值策略.html`
+- **文档**：`strategy/docs/Hh-alpha84小市值策略.md`
