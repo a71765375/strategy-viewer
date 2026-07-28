@@ -25,3 +25,6 @@
 | 国泰君安量价因子池 | 广发LLT择时 | 32.34% | 2.48 | 机构因子+择时低风险 | [查看](../strategy/docs/刘小力-国泰君安量价因子32+4策略.md) | [原帖](https://bbs.quantclass.cn/thread/87867) |
 | 小市值（遗传筛选） | 均线支撑; 均线多头排列; 成交额稳定性; CCI; MACD择时 | 45.7% | 2.48 | 遗传算法优化 | [查看](../strategy/docs/游击战策略-遗传算法均线CCI策略.md) | [原帖](https://bbs.quantclass.cn/thread/87018) |
 | 小市值 | 放量上涨占比; 资金曲线择时 | 49.41% | 2.46 | 放量上涨+择时 | [查看](../strategy/docs/大苗条-市值放量上涨占比策略.md) | [原帖](https://bbs.quantclass.cn/thread/86825) |
+| 小市值 | 涨跌幅; 成交额缩波; ROE; 归母净利润增速; 择时模式切换 | 68% | 2.45 | 基本面+技术面动态切换 | [查看](../strategy/docs/LK-小市值涨跌幅成交额缩波ROE策略.md) | [原帖](https://bbs.quantclass.cn/thread/87241) |
+| 小市值 | 量价背离; 布林带择时 | 71.64% | 2.42 | 量价背离+布林带 | [查看](../strategy/docs/Lucian-小市值量价背离布林带择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/86980) |
+| 小市值 | 中户散户净买入; MA择时 | 52.26% | 2.39 | 资金流向监控 | [查看](../strategy/docs/K无名-小市值中户散户净买入MA择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/87019) |

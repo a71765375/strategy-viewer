@@ -1,0 +1,352 @@
+7ZIP
+AI
+APK
+CAD
+CDR
+DOC
+DOC
+X
+EPS
+EXE
+IPA
+JPG
+MP3
+MP4
+PDF
+PPT
+PSD
+RAR
+TXT
+?
+WAV
+XLS
+XLSX
+ZIP
+精
+精
+精
+荐
+赏
+金色天际线
+消息
+个人中心
+退出登录
+目录
+ 【任务】【K无名】小市值 + 中户和散户净买入策略（含移动平均线择时）_52.26%_-21.84%_2.39
+K无名
++ 关注
+独家原创 【A】百因子小组-2期-2026
+【任务】【K无名】小市值 + 中户和散户净买入策略（含移动平均线择时）_52.26%_-21.84%_2.39 
+目录
+K无名
+（策略分享会）
++ 关注
+发布于 2026-06-25 13:15
+（编辑于 2026-06-25 13:15）
+一、策略核心思路
+选股因子（双因子驱动）：
+市值因子 （权重2）：升序排序，偏好小市值股票
+中户净买入占比 （权重1，16日参数）：降序排序，偏好中户资金持续流入的股票
+过滤条件：
+散户净买入占比 ≤ 0：排除散户追涨的股票，避免"接盘"
+策略特点
+
+资金博弈视角 ：
+
+跟随"中户"（相对理性的资金）的买入方向
+规避"散户"（追涨杀跌资金）的买入行为
+本质是寻找"聪明钱"流入、散户未关注的标的
+市值偏好 ：
+小市值股票流动性好、弹性大
+配合资金流向因子，捕捉资金推动的上涨机会
+二、策略详细描述
+1、基础配置
+配置项	参数	
+初始资金	1000W	
+回测区间	2009/01/01 - 2026/06/05	
+持仓周期	5D	
+选股数量	5只	
+板块过滤	剔除 科创板（kcb）、北交所（bj）	
+2、选股因子
+2.1 市值.py
+import pandas as pd
+
+fin_cols = []
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：市值
+    计算逻辑：
+    1. 优先使用'总市值'列，若不存在则使用'流通市值'列，若两者均不存在则使用默认值1e8
+    2. 返回包含该因子值的DataFrame，聚合方式为取最新值
+
+    物理意义：
+    市值反映了市场对上市公司整体价值的定价，在中国A股市场中，市值因子与股票预期收益存在显著负相关（小市值效应）。由于A股市场存在显著的散户主导特征和壳价值溢价，小盘股往往具有更高的波动性和投机性，市值因子在量价博弈中体现了市场参与者的反身性定价行为。
+    """
+    col_name = kwargs['col_name']
+    factor_col = df.get("总市值", df.get("流通市值", 1e8))
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+    return factor_df, agg_dict
+
+​
+2.2 中户净买入占比.py
+
+import pandas as pd
+
+fin_cols = []
+
+# 需要额外加载的行情数据列（资金流数据）
+ov_cols = ["中户资金买入额", "中户资金卖出额"]
+
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：中户净买入占比
+    计算逻辑：
+    1. 计算中户净买入 = 中户资金买入额 - 中户资金卖出额
+    2. 计算中户净买入占比 = 中户净买入 / 成交额
+    3. 对过去n天的中户净买入占比进行滚动平均
+  
+    物理意义：
+    衡量中户资金的净买入力度占成交额的比例。根据东吴金工研报，中户资金流在小市值股票中具有正向效应。中户通常指资金量中等的投资者群体，其资金流向具有一定的信息含量。正值表示中户资金净流入，负值表示净流出。该因子可用于捕捉中户资金动向，辅助判断市场情绪。
+    """
+    col_name = kwargs["col_name"]
+    window = param if param else 5
+
+    # 检查必要的列是否存在
+    required_cols = [
+        "中户资金买入额",
+        "中户资金卖出额",
+        "成交额",
+    ]
+    if not all(col in df.columns for col in required_cols):
+        # 如果缺少资金流数据，返回NaN
+        factor_col = float("nan")
+        factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+        agg_dict = {col_name: 'last'}
+        return factor_df, agg_dict
+
+    # 计算中户净买入
+    net_buy = df["中户资金买入额"] - df["中户资金卖出额"]
+
+    # 计算占成交额比例
+    net_buy_ratio = net_buy / df["成交额"]
+
+    # 滚动平均
+    factor_col = net_buy_ratio.rolling(window, min_periods=1).mean()
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+    return factor_df, agg_dict
+
+
+​
+2.3 散户净买入占比.py
+
+import pandas as pd
+
+fin_cols = []
+
+# 需要额外加载的行情数据列（资金流数据）
+ov_cols = ["散户资金买入额", "散户资金卖出额"]
+
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：散户净买入占比
+    计算逻辑：
+    1. 计算散户净买入 = 散户资金买入额 - 散户资金卖出额
+    2. 计算散户净买入占比 = 散户净买入 / 成交额
+    3. 对过去n天的散户净买入占比进行滚动平均
+  
+    物理意义：
+    衡量散户资金的净买入力度占成交额的比例。散户通常作为反向指标，散户大幅买入时往往是短期顶部，散户大幅卖出时往往是短期底部。在中国A股市场，散户追涨杀跌特征明显，该因子可用于反向操作策略。正值表示散户资金净流入（需警惕），负值表示净流出（可能存在机会）。
+    """
+    col_name = kwargs["col_name"]
+    window = param if param else 20
+
+    # 检查必要的列是否存在
+    required_cols = [
+        "散户资金买入额",
+        "散户资金卖出额",
+        "成交额",
+    ]
+    if not all(col in df.columns for col in required_cols):
+        # 如果缺少资金流数据，返回NaN
+        factor_col = float("nan")
+        factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+        agg_dict = {col_name: 'last'}
+        return factor_df, agg_dict
+
+    # 计算散户净买入
+    net_buy = df["散户资金买入额"] - df["散户资金卖出额"]
+
+    # 计算占成交额比例
+    net_buy_ratio = net_buy / df["成交额"]
+
+    # 滚动平均
+    factor_col = net_buy_ratio.rolling(window, min_periods=1).mean()
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+    return factor_df, agg_dict
+
+​
+3、择时因子
+移动平均线.py
+
+import pandas as pd
+
+
+def equity_signal(equity_df: pd.DataFrame, *args) -> pd.Series:
+    """
+    根据资金曲线，动态调整杠杆
+    :param equity_df: 资金曲线的DF
+    :param args: 其他参数
+    :return: 返回包含 leverage 的数据
+    """
+
+    # ===== 获取策略参数
+    n = int(args[0])
+
+    # ===== 计算指标
+    # 计算均线
+    ma = equity_df["净值"].rolling(n, min_periods=1).mean()
+
+    # 默认空仓
+    signals = pd.Series(0.0, index=equity_df.index)
+
+    # equity 在均线之上，才持有
+    above = equity_df["净值"] > ma
+    signals.loc[above] = 1.0
+
+    return signals
+
+
+​
+三、完整策略代码
+config
+strategy = {
+    'name': '百因子策略11',  # 策略名
+    'hold_period': '5D',  # 持仓周期，W 代表周，M 代表月，还支持日频：3D、5D、10D
+    'select_num': 5,  # 选股数量，可以是整数，也可以是小数，比如 0.1 表示选取 10% 的股票
+    "factor_list": [  # 选股因子列表
+
+        ("市值", True, "", 2),
+        ("中户净买入占比", False, 16, 1),
+    ],
+    "filter_list": [
+        ("散户净买入占比", 22, "val:<=0", True),
+
+    ]  # 过滤因子列表
+}
+
+days_listed = 250  # 上市至今交易天数
+excluded_boards = ["kcb", "bj"]  # 同时过滤科创板和北交所
+equity_timing = {"name": "移动平均线", "params": [18]}
+
+​
+四、策略回测表现
+
+累积净值 1511.18
+年化收益 52.26%
+最大回撤 -21.84%
+最大回撤开始时间 2015-06-17 00:00:00
+最大回撤结束时间 2015-08-03 00:00:00
+年化收益/回撤比 2.39
+盈利周期数 1644.0
+亏损周期数 2581.0
+胜率 38.90%
+每周期平均收益 0.19%
+盈亏收益比 2.36
+单周期最大盈利 11.33%
+单周期大亏损 -10.52%
+最大连续盈利周期数 13.0
+最大连续亏损周期数 54.0
+收益率标准差 1.53%
+分年收益率：
+涨跌幅
+交易日期
+2009-12-31 216.45%
+2010-12-31 82.55%
+2011-12-31 18.68%
+2012-12-31 -0.27%
+2013-12-31 38.26%
+2014-12-31 142.25%
+2015-12-31 530.21%
+2017-12-31 12.13%
+2018-12-31 -5.57%
+2019-12-31 32.65%
+2020-12-31 64.71%
+2021-12-31 14.02%
+2022-12-31 29.12%
+2023-12-31 15.07%
+2024-12-31 72.74%
+2025-12-31 23.02%
+2026-12-31 16.07%
+
+资金曲线
+
+择时前
+
+择时后
+
+附件
+ 散户净买入占比.py
+2 KB
+下载
+ 中户净买入占比.py
+2 KB
+下载
+1人打赏了1个葫芦籽
+投籽
+阅读 127
+ 最热讨论 
+1 条评论
+还能输入40000个字 发 布
+K无名
+作者
+
+1、散户和中户需要用到【stock-trading-data-pro】数据
+
+2、【step1_整理数据.py】加上下面就行
+
+定义股票数据所需的列
+
+STOCK_DATA_COLS = [
+“股票代码”,
+“股票名称”,
+“交易日期”,
+“开盘价”,
+“最高价”,
+“最低价”,
+“收盘价”,
+“前收盘价”,
+“成交量”,
+“成交额”,
+“流通市值”,
+“总市值”,
+“中户资金买入额”,
+“中户资金卖出额”,
+“散户资金买入额”,
+“散户资金卖出额”,
+]
+
+2026-06-25 13:20
+ 赞
+ 回复
+没有更多数据了
+投籽
+收藏
+分享
+举报
+评论1
+投籽1

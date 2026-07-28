@@ -35,3 +35,6 @@
 | 刘小力-国泰君安量价因子32+4 | https://bbs.quantclass.cn/thread/87867 | 2026-07-28 |
 | 游击战策略-遗传算法均线CCI | https://bbs.quantclass.cn/thread/87018 | 2026-07-28 |
 | 大苗条-市值放量上涨占比 | https://bbs.quantclass.cn/thread/86825 | 2026-07-28 |
+| LK-小市值涨跌幅成交额缩波ROE | https://bbs.quantclass.cn/thread/87241 | 2026-07-28 |
+| Lucian-小市值量价背离布林带择时 | https://bbs.quantclass.cn/thread/86980 | 2026-07-28 |
+| K无名-小市值中户散户净买入MA择时 | https://bbs.quantclass.cn/thread/87019 | 2026-07-28 |
