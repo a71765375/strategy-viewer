@@ -20,3 +20,4 @@
 | 小市值 | 20天高点回落 | 59.78% | 2.62 | 高点回落小市值 | [查看](../strategy/docs/John-20天高点回落小市值策略.md) | [原帖](https://bbs.quantclass.cn/thread/86919) |
 | Alpha124量价错杀 | 四维确认链 | 99.48% | 2.59 | 量价错杀高收益 | [查看](../strategy/docs/三秒-Alpha124量价错杀四维确认链策略.md) | [原帖](https://bbs.quantclass.cn/thread/87124) |
 | 小市值 | 商誉资产占比; 趋势记忆衰减; 换手率 | 66.56% | 2.59 | 基本面+技术面混合 | [查看](../strategy/docs/施塔克-市值商誉趋势记忆换手率策略.md) | [原帖](https://bbs.quantclass.cn/thread/87330) |
+| 小市值 | 筛选因子 | 69.2% | 2.58 | 小市值+筛选 | [查看](../strategy/docs/半岛微凉-小市值筛选因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/86823) |
