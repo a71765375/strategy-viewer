@@ -21,3 +21,4 @@
 | Alpha124量价错杀 | 四维确认链 | 99.48% | 2.59 | 量价错杀高收益 | [查看](../strategy/docs/三秒-Alpha124量价错杀四维确认链策略.md) | [原帖](https://bbs.quantclass.cn/thread/87124) |
 | 小市值 | 商誉资产占比; 趋势记忆衰减; 换手率 | 66.56% | 2.59 | 基本面+技术面混合 | [查看](../strategy/docs/施塔克-市值商誉趋势记忆换手率策略.md) | [原帖](https://bbs.quantclass.cn/thread/87330) |
 | 小市值 | 筛选因子 | 69.2% | 2.58 | 小市值+筛选 | [查看](../strategy/docs/半岛微凉-小市值筛选因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/86823) |
+| 小市值 | 云游策略优化 | 91% | 2.57 | 优化云游 | [查看](../strategy/docs/hans郑-优化云游策略.md) | [原帖](https://bbs.quantclass.cn/thread/87487) |

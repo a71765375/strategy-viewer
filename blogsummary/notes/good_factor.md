@@ -636,3 +636,13 @@
 - **核心思路**：小市值为主，辅以筛选
 - **HTML**：`strategy/htmls/半岛微凉-小市值筛选因子.html`
 - **文档**：`strategy/docs/半岛微凉-小市值筛选因子策略.md`
+
+## 策略28：基于云游策略优化
+- **作者**：hans郑
+- **来源**：https://bbs.quantclass.cn/thread/87487
+- **年化**：91% | **回撤**：-35% | **Calmar**：2.57
+- **主因子**：小市值
+- **副因子**：云游策略优化
+- **核心思路**：对云游策略做优化调整
+- **HTML**：`strategy/htmls/hans郑-优化云游策略.html`
+- **文档**：`strategy/docs/hans郑-优化云游策略.md`
