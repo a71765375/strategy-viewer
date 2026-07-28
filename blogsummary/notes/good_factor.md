@@ -576,3 +576,13 @@
 - **核心思路**：单因子Bias，自研因子全流程验证
 - **HTML**：`strategy/htmls/Link-自研单因子Bias.html`
 - **文档**：`strategy/docs/Link-自研单因子Bias策略.md`
+
+## 策略22：回调缩波选股策略
+- **作者**：初学
+- **来源**：https://bbs.quantclass.cn/thread/87785
+- **年化**：88.7% | **回撤**：-32.21% | **Calmar**：2.75
+- **主因子**：小市值
+- **副因子**：振幅; RET5; 成交额缩波因子
+- **核心思路**：震荡小+回调+成交缩波的小市值
+- **HTML**：`strategy/htmls/初学-回调缩波.html`
+- **文档**：`strategy/docs/初学-回调缩波策略.md`

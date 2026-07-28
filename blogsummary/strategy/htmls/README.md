@@ -25,3 +25,4 @@
 | 不甜不放盐-市值成交额STD流动性螺旋因子 | https://bbs.quantclass.cn/thread/86923 | 2026-07-28 |
 | Seth-非预处理版-市值Donchian枢轴点强度等因子 | https://bbs.quantclass.cn/thread/86765 | 2026-07-28 |
 | Link-自研单因子Bias | https://bbs.quantclass.cn/thread/87388 | 2026-07-28 |
+| 初学-回调缩波 | https://bbs.quantclass.cn/thread/87785 | 2026-07-28 |

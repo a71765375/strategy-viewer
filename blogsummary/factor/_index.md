@@ -15,3 +15,4 @@
 | 小市值 | 成交额STD; 流动性螺旋; 成交量季节性月度 | 49.92% | 3.13 | 4因子全升序低风险 | [查看](../strategy/docs/不甜不放盐-市值成交额STD流动性螺旋策略.md) | [原帖](https://bbs.quantclass.cn/thread/86923) |
 | 小市值 | Donchian通道位置（择时）; 枢轴点强度; Alpha4/84 | 71.49% | 3.01 | Seth原版（非预处理）| [查看](../strategy/docs/Seth-非预处理版-市值Donchian枢轴点强度策略.md) | [原帖](https://bbs.quantclass.cn/thread/86765) |
 | Bias（自研） | 无 | 71.27% | 2.77 | 自研单因子 | [查看](../strategy/docs/Link-自研单因子Bias策略.md) | [原帖](https://bbs.quantclass.cn/thread/87388) |
+| 小市值 | 振幅; RET5; 成交额缩波 | 88.7% | 2.75 | 回调+缩波 | [查看](../strategy/docs/初学-回调缩波策略.md) | [原帖](https://bbs.quantclass.cn/thread/87785) |
