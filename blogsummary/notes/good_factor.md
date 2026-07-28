@@ -606,3 +606,13 @@
 - **核心思路**：高点回落后买入小市值
 - **HTML**：`strategy/htmls/John-20天高点回落小市值.html`
 - **文档**：`strategy/docs/John-20天高点回落小市值策略.md`
+
+## 策略25：Alpha124量价错杀+四维确认链
+- **作者**：三秒
+- **来源**：https://bbs.quantclass.cn/thread/87124
+- **年化**：99.48% | **回撤**：-38.37% | **Calmar**：2.59
+- **主因子**：Alpha124量价错杀
+- **副因子**：四维确认链
+- **核心思路**：量价错杀识别+四维确认的高收益策略
+- **HTML**：`strategy/htmls/三秒-Alpha124量价错杀四维确认链.html`
+- **文档**：`strategy/docs/三秒-Alpha124量价错杀四维确认链策略.md`

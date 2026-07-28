@@ -18,3 +18,4 @@
 | 小市值 | 振幅; RET5; 成交额缩波 | 88.7% | 2.75 | 回调+缩波 | [查看](../strategy/docs/初学-回调缩波策略.md) | [原帖](https://bbs.quantclass.cn/thread/87785) |
 | 小市值 | Alpha84 | 79.78% | 2.65 | 小市值+Alpha84 | [查看](../strategy/docs/Hh-alpha84小市值策略.md) | [原帖](https://bbs.quantclass.cn/thread/87088) |
 | 小市值 | 20天高点回落 | 59.78% | 2.62 | 高点回落小市值 | [查看](../strategy/docs/John-20天高点回落小市值策略.md) | [原帖](https://bbs.quantclass.cn/thread/86919) |
+| Alpha124量价错杀 | 四维确认链 | 99.48% | 2.59 | 量价错杀高收益 | [查看](../strategy/docs/三秒-Alpha124量价错杀四维确认链策略.md) | [原帖](https://bbs.quantclass.cn/thread/87124) |
