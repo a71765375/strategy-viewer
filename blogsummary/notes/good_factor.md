@@ -536,3 +536,13 @@
 - **核心思路**：小市值+质量过滤+择时，作者精确对标标题验证结果高度一致。
 - **HTML**：`strategy/htmls/金风重丰-小市值质量过滤择时策略.html`
 - **文档**：`strategy/docs/金风重丰-小市值质量过滤择时策略.md`
+
+## 策略18：市值+Donchian通道位置+枢轴点强度等因子选股策略
+- **作者**：Seth
+- **来源**：https://bbs.quantclass.cn/thread/86842
+- **年化**：70.87% | **回撤**：-21.86% | **Calmar**：3.24 | **胜率**：42.61%
+- **主因子**：小市值
+- **副因子**：Donchian通道位置（择时）; 枢轴点强度; Alpha4/Alpha84; 换手率
+- **核心思路**：小市值+Donchian择时，择时贡献Calmar从2.32→3.24
+- **HTML**：`strategy/htmls/Seth-市值Donchian枢轴点强度等因子.html`
+- **文档**：`strategy/docs/Seth-市值Donchian枢轴点强度策略.md`

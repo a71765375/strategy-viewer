@@ -11,3 +11,4 @@
 | RankIC代理_20日 | 小市值; 倒锤子线; N字突破上涨; 成交额STD | 90.94% | 1.92 | Allen初版，全升序缝合怪 | [查看](../strategy/docs/缝合怪RankIC代理等5因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/86813) |
 | 小市值（26因子缝合） | 量价/动量/K线/横盘等共26因子 | 93.04% | 3.49 | 26因子缝合怪，过拟合警告 | [查看](../strategy/docs/26因子37万净值-过拟合警告.md) | [原帖](https://bbs.quantclass.cn/thread/86883) |
 | 小市值 | 成交额缩波; 振幅; Ret; 质量门过滤; 回归择时 | 81.45% | 3.49 | 小市值+质量过滤+择时 | [查看](../strategy/docs/金风重丰-小市值质量过滤择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/87707) |
+| 小市值 | Donchian通道位置（择时）; 枢轴点强度; Alpha4/84 | 70.87% | 3.24 | 小市值+Donchian择时 | [查看](../strategy/docs/Seth-市值Donchian枢轴点强度策略.md) | [原帖](https://bbs.quantclass.cn/thread/86842) |
