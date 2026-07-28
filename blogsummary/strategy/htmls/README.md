@@ -17,3 +17,4 @@
 | Morse-过拟合之基于Ret市值等11因子选股策略 | https://bbs.quantclass.cn/thread/87621 | 2026-07-28 |
 | 超-基于小市值上下影线比例等因子选股策略 | https://bbs.quantclass.cn/thread/87515 | 2026-07-28 |
 | Allen-基于Ret市值等6因子选股策略 | https://bbs.quantclass.cn/thread/86885 | 2026-07-28 |
+| 走天涯-MCXLL多维度超跌反弹策略 | https://bbs.quantclass.cn/thread/86906 | 2026-07-28 |
