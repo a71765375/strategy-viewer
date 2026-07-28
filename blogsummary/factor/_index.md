@@ -13,3 +13,4 @@
 | 小市值 | 成交额缩波; 振幅; Ret; 质量门过滤; 回归择时 | 81.45% | 3.49 | 小市值+质量过滤+择时 | [查看](../strategy/docs/金风重丰-小市值质量过滤择时策略.md) | [原帖](https://bbs.quantclass.cn/thread/87707) |
 | 小市值 | Donchian通道位置（择时）; 枢轴点强度; Alpha4/84 | 70.87% | 3.24 | 小市值+Donchian择时 | [查看](../strategy/docs/Seth-市值Donchian枢轴点强度策略.md) | [原帖](https://bbs.quantclass.cn/thread/86842) |
 | 小市值 | 成交额STD; 流动性螺旋; 成交量季节性月度 | 49.92% | 3.13 | 4因子全升序低风险 | [查看](../strategy/docs/不甜不放盐-市值成交额STD流动性螺旋策略.md) | [原帖](https://bbs.quantclass.cn/thread/86923) |
+| 小市值 | Donchian通道位置（择时）; 枢轴点强度; Alpha4/84 | 71.49% | 3.01 | Seth原版（非预处理）| [查看](../strategy/docs/Seth-非预处理版-市值Donchian枢轴点强度策略.md) | [原帖](https://bbs.quantclass.cn/thread/86765) |

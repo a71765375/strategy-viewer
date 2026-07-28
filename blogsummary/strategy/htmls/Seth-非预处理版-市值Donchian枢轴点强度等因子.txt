@@ -1,0 +1,785 @@
+7ZIP
+AI
+APK
+CAD
+CDR
+DOC
+DOC
+X
+EPS
+EXE
+IPA
+JPG
+MP3
+MP4
+PDF
+PPT
+PSD
+RAR
+TXT
+?
+WAV
+XLS
+XLSX
+ZIP
+精
+精
+精
+荐
+赏
+金色天际线
+消息
+个人中心
+退出登录
+【任务】【Seth】基于市值和Donchian通道位置（选股因子+择时因子），枢轴点强度alpha4和84等因子构建的选股策略-71.49%_-23.76%_3.01
+Seth
++ 关注
+独家原创 【A】百因子小组-2期-2026
+【任务】【Seth】基于市值和Donchian通道位置（选股因子+择时因子），枢轴点强度alpha4和84等因子构建的选股策略-71.49%_-23.76%_3.01
+Seth
+（股票课程）
++ 关注
+发布于 2026-06-15 12:01
+（编辑于 2026-06-16 05:02）
+
+一、策略思路
+据说rank有未来。https://bbs.quantclass.cn/thread/86842是预处理版，不过跑起来有点麻烦，等个组长回信再看看要不要隐藏本帖。
+
+使用了上一轮的百因子小组自己做的几个因子，并拿了一些新的因子进行组合：
+枢轴点强度_20日，Donchian通道位置_20日，穿刺形态信号，收盘价，换手率
+
+Alpha#4: (-1 * Ts_Rank(rank(low), 9))
+
+Alpha#84: SignedPower(Ts_Rank((vwap - ts_max(vwap, 15.3217)), 20.7127), delta(close, 4.96796))
+
+并根据Donchian通道位置_20日因子的逻辑做了一个择时(880823.xls是通达信的微盘股指数，做择时用)
+
+二、策略描述
+策略名称：策略1
+
+持仓周期：3D
+
+回测时间：2009年-01-01到2026年6-5
+
+选股数量：4
+
+三、策略代码
+3.1 config.py文件
+
+import os
+from pathlib import Path
+
+# ====================================================================================================
+# 1️⃣ 回测配置
+# ====================================================================================================
+# 回测数据的起始时间。如果因子使用滚动计算方法，在回测初期因子值可能为 NaN，实际的首次交易日期可能晚于这个起始时间。
+start_date = "2009-01-01"
+# 回测数据的结束时间。可以设为 None，表示使用最新数据；也可以指定具体日期，例如 '2024-11-01'。
+# end_date = None
+end_date = "2026-06-05"
+
+# ====================================================================================================
+# 2️⃣ 数据配置
+# ====================================================================================================
+# 数据中心的文件夹，使用数据客户端，并订阅相关数据，就不需要再手动指定每一个必要数据
+# data_center_path = Path("C:/Users/Hasee/Desktop/quantdata")
+
+# 数据源的定义，如果不使用数据客户端的时候，可以手动自定义以下逐个数据源
+# ** 股票日线数据 和 指数数据是必须的，其他的数据可以在 data_sources 中定义 **
+# (必选) 股票日线数据，全量数据下载链接：https://www.quantclass.cn/data/stock/stock-trading-data
+# 参考：https://bbs.quantclass.cn/thread/39599
+stock_data_path = r"C:\Users\Hasee\Desktop\quantdata\stock-trading-data"
+# (必选) 指数数据路径，全量数据下载链接：https://www.quantclass.cn/data/stock/stock-main-index-data
+index_data_path = r"C:\Users\Hasee\Desktop\quantdata\stock-main-index-data"
+# (可选) 财务数据，全量数据下载链接：https://www.quantclass.cn/data/stock/stock-fin-data-xbx
+fin_data_path =  r"C:\Users\Hasee\Desktop\quantdata\stock-fin-data-xbx"
+
+
+# ====================================================================================================
+# 3️⃣ 策略配置
+# ====================================================================================================
+strategy = {
+    'name': '策略1',  # 策略名
+    'hold_period': '3D',  # 持仓周期，W 代表周，M 代表月，还支持日频：3D、5D、10D
+    'select_num': 4,  # 选股数量，可以是整数，也可以是小数，比如 0.1 表示选取 10% 的股票
+    "factor_list": [  # 选股因子列表
+        # ** 因子格式说明 **
+        # 因子名称（与 '因子库' 文件中的名称一致），排序方式（True 为升序，False 为降序），因子参数，因子权重
+        # ('龙头股特征_60日', False, None, 1),
+        # ('极端收益频率_60日', False, None, 1),
+        # ('穿刺形态信号', False, None, 1),
+        # ('成交额缩量因子', True, (10, 60), 1),
+        # ('归母净利润同比增速', True, 60, 1),
+        # ('Ret', True, 5, 1),
+        # ('Ret', True, 10, 1),
+        # ('收盘价', True, None, 1),
+        ('市值', True, None, 1),
+        # ('异常成交量检测_60日',False, 5, 1),  
+        # ('换手率', True, 5, 1),
+        # ('换手率', True, 1, 1),
+        # 案例说明：使用'市值.py'因子，从小到大排序（越小越是我想要），None表示无额外参数，后面计算复合选股因子的时候权重为1
+        # 可添加多个选股因子
+    ],
+    "filter_list": [
+        # ('月份', [2], 'val:==1'),  # 只在2月份选股
+        # ('市值', None, 'pct:<=0.8'),
+        # ('超额收益率_20日', None, 'pct:>=0.01'),
+        # ('最高-收盘价差值_20日均', None, 'pct:>=0.01'),
+        # ('最高-收盘价差值_20日均', None, 'pct:<=0.99'),
+        ('穿刺形态信号', None, 'pct:<=0.9'),
+        # ('穿刺形态信号', None, 'val==1'),
+        # ('价格加速度_20日', None, 'pct:<=0.99'),
+        # ('价格加速度_20日', None, 'pct:>=0.01'),
+        # ('矩形整理识别_20日', None, 'val:<=1'),
+        # ('换手率变异系数_20日', None, 'pct:<=0.99'),
+        # ('ADX趋势强度_14日', 4, 'pct:>=0.1'),
+        # ('最大N日涨幅', 5, 'pct:<=0.99'),
+        # ('最大5日涨幅_20日', None, 'pct:<=0.8'),
+        # ('上涨占比_20日', None, 'pct:>=0.01'),
+        # ('归母净利润同比增速', 60, 'pct:>=0.3'),
+        # ('异常成交量检测_60日', 22, 'pct:<=0.8'),  
+        # ('异常成交量检测_60日', 22, 'pct:<=0.8'),  
+        # ('枢轴点强度_20日', 20, 'pct:<=0.8'),  
+        # ('Donchian通道位置_20日_None', 10, 'pct:<=0.8'),  
+        ('Donchian通道位置_20日', 4, 'pct:<=0.9'),  
+        # ('Donchian通道位置_20日', 8, 'pct:<=0.9'),  
+        # ('Donchian通道位置_20日', 20, 'pct:<=0.9'),  
+        # ('Donchian通道位置_20日', 10, 'pct:<=0.9'),  
+        # ('Alpha2', [10], 'pct:<=0.95'), #***
+        ('枢轴点强度_20日', 8, 'pct:<=0.8'),  
+        ('Alpha4', [12], 'pct:<=0.99'), #***
+        ('Alpha4', [12], 'pct:>=0.6'), #***
+        ('Alpha84', [15,5], 'pct:<=0.95'), #***
+        ('枢轴点强度_20日', 5, 'pct:<=0.95'),  
+        ('枢轴点强度_20日', 14, 'pct:<=0.9'),  
+        # ('龙头股特征_60日', None, 'pct:<=0.99'),
+        # ('龙头股特征_60日', None, 'pct:>=0.01'),
+        # ('超额收益率_20日', None, 'val:<=0'),
+        # ('龙头股特征_60日', None, 'val:<=0'),
+        # ('月份', [4,], 'val:!=1'),  # 不在4月份选股
+        # ('Ret', 5, 'pct:<=0.1'),
+        # ('收盘价', None, 'pct:<=0.99'),
+        ('收盘价', None, 'val:>=2'),
+        ('换手率', 1, 'pct:<=0.99'),
+        # ('成交额缩量因子', (10, 60), 'pct:<=0.6',True),
+
+    ]  # 过滤因子列表
+}
+
+days_listed = 250  # 上市至今交易天数
+excluded_boards = ["kcb", "bj"]  # 同时过滤创业板和科创板和北交所
+# excluded_boards = []  # 过滤板块，默认不过滤
+# excluded_boards = ["cyb", "kcb", "bj"]  # 同时过滤创业板和科创板和北交所
+
+# 💡运行提示：
+# - 修改hold_period之后，需要执行step2因子计算，不需要再次准备数据
+# - 修改select_num之后，只需要再执行step3选股即可，不需要准备数据和计算因子
+# - 修改factor_list之后，需要执行step2因子计算，不需要再次准备数据
+# - 修改filter_list之后，需要执行step2因子计算，不需要再次准备数据
+
+# 资金曲线再择时配置（非必要，可以为空）
+# 用于在回测完成后，对资金曲线进行二次择时，生成动态杠杆
+# 可以参考的择时方法：
+#   - 移动平均线：根据资金曲线与移动平均线的关系进行择时
+#   - 布林带：根据资金曲线与布林带的关系进行择时
+#   - 趋势线：根据资金曲线的趋势进行择时
+# 参数说明：
+#   - name: 择时方法名称
+#   - params: 择时方法的参数列表，不同方法参数不同
+#     移动平均线: [周期]
+#     布林带: [周期, 标准差倍数]
+#     趋势线: [周期]
+# equity_timing = {"name": "指数择时", "params": [20,60]}
+# equity_timing = {"name": "移动平均线", "params": [20]}
+# equity_timing = {"name": "MA双均线择时", "params": [8,16]}
+# equity_timing = {"name": "布林带&8日均线双重择时","params": [20,2,0.5,8]}
+# equity_timing = {"name": "布林带&8日均线双重择时","params": [18,3,0.5,9]}
+# equity_timing = {"name": "微盘股布林带&8日均线双重择时","params": [18,3,0.56,8]}
+# equity_timing = {"name": "微盘股布林带&8日均线双重择时","params": [14,2.3,0.57,12]}
+# equity_timing = {"name": "新微盘股指数MA", "params": [5,10,20,60]}
+# equity_timing = {"name": "新微盘股指数MA", "params": [5,8,30,60]}
+# equity_timing = {"name": "新微盘股指数MA", "params": [8,20]}
+# equity_timing = {"name": "微盘股枢轴点强度择时", "params": [9,0.14,-0.01,5,0.14,0.08,30]}#4W
+# equity_timing = {"name": "微盘股枢轴点强度择时", "params": [9,0.14,0.,5,0.14,0.08,30]}#3W6
+equity_timing = {"name": "Donchian通道位置择时", "params": [20,0.2,-0.2,30,20,0.2,-0.3]}
+# equity_timing = {"name": "Donchian通道位置择时", "params": [20,0.2,-0.2,30,20,0.18,-0.29]}
+# equity_timing = {"name": "新交割日加强择时1D适配版2","params": [0.33, -0.5, -0.55, -0.5, -0.15, 0.05, 0.15, -0.15, -0.1, 0.17,0.35, 0.15,0.45, 0.1, 0.1, 0, -0.1, -0.05, 0.17, 1.2, 10, 7,2,0.49]}
+
+
+
+# ====================================================================================================
+# 4️⃣ 模拟交易配置
+# 以下参数几乎不需要改动
+# ====================================================================================================
+# initial_cash = 10_0000  # 初始资金10w
+initial_cash = 1_0000_0000  # 初始资金10w
+# 手续费
+c_rate = 1.2 / 10000
+# 印花税
+t_rate = 1 / 1000
+# 并行运行的进程数
+n_jobs = os.cpu_count() - 1
+
+# =====参数预检查=====
+if Path(stock_data_path).exists() is False:
+    print(f"股票日线数据路径不存在：{stock_data_path}，请检查配置或联系助教，程序退出")
+    exit()
+if Path(index_data_path).exists() is False:
+    print(f"指数数据路径不存在：{index_data_path}，请检查配置或联系助教，程序退出")
+    exit()
+
+
+​
+
+（1）市值
+基础市值代码，见附件
+
+（2）Donchian通道位置_20日
+
+import pandas as pd
+
+fin_cols = []
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：Donchian通道位置_20日
+    计算逻辑：
+    1. 计算过去20日最高价与最低价，构建Donchian通道上下轨
+    2. 计算通道中轨 = (上轨+下轨)/2
+    3. 计算当前收盘价在通道中的相对位置 = (收盘价-中轨)/(上轨-下轨+1e-8)
+  
+    物理意义：
+    衡量当前价格在20日价格区间内的相对强弱位置。正值表示价格位于中轨上方，负值表示位于中轨下方。在中国A股市场，该因子反映了短期趋势强度与超买超卖状态，结合反身性理论，当价格持续位于通道上轨时可能引发追涨效应，位于下轨时可能触发恐慌性抛售，但极端位置也往往预示着反转机会。
+    """
+    n = int(param)  # 滚动周期数
+    col_name = kwargs['col_name']
+    hh, ll = df['最高价_复权'].rolling(n).max(), df['最低价_复权'].rolling(n).min()
+    mid = (hh + ll) / 2
+    factor_col = (df['收盘价_复权'] - mid) / (hh - ll + 1e-8)
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+    return factor_df, agg_dict
+
+
+​
+
+（3）枢轴点强度_20日
+
+import pandas as pd
+
+fin_cols = []
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：枢轴点强度_20日
+    计算逻辑：
+    1. 计算20日最高价、最低价、收盘价复权均值的1/3作为枢轴点（Pivot Point）
+    2. 计算当前收盘价相对于枢轴点的偏离度：(收盘价 - 枢轴点) / 枢轴点
+  
+    物理意义：
+    基于经典枢轴点理论，衡量股价在20日周期内相对于量价均衡中枢的偏离强度。在中国A股市场，该因子捕捉了短期价格反身性效应：当股价显著高于枢轴点时，反映市场情绪过热和趋势惯性，但同时也暗示均值回归压力增大；反之，低于枢轴点则反映恐慌性超卖。该因子在震荡市中具有较好的反转预测能力，在趋势市中则体现动量延续特征。
+    """
+    n = int(param)  # 滚动周期数
+    col_name = kwargs['col_name']
+    pp = (df['最高价_复权'] + df['最低价_复权'] + df['收盘价_复权']).rolling(n).mean() / 3
+    factor_col = (df['收盘价_复权'] - pp) / (pp + 1e-8)
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+    return factor_df, agg_dict
+
+
+​
+
+（4）穿刺形态信号
+
+import pandas as pd
+
+fin_cols = []
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：穿刺形态信号
+    计算逻辑：
+    1. 识别前一日为阴线（收盘<开盘）且当日为阳线（收盘>开盘），同时当日开盘价低于前日收盘价，且当日收盘价高于前日K线实体中点，定义为穿刺形态（看涨信号），赋值为+1。
+    2. 识别前一日为阳线（收盘>开盘）且当日为阴线（收盘<开盘），同时当日开盘价高于前日收盘价，且当日收盘价低于前日K线实体中点，定义为乌云盖顶（看跌信号），赋值为-1。
+    3. 其他情况赋值为0，最终因子值为穿刺信号减去乌云盖顶信号。
+  
+    物理意义：
+    基于A股市场量价博弈与反身性理论，穿刺形态反映多头在空头主导后强势反攻，突破前日实体中点，预示短期趋势反转向上；乌云盖顶则相反，体现空头在高位压制后反噬，暗示趋势转弱。该因子捕捉市场情绪转折点，在震荡市中具有显著预测能力。
+    """
+    col_name = kwargs['col_name']
+    prev_red = df['收盘价_复权'].shift(1) > df['开盘价_复权'].shift(1)
+    prev_green = df['收盘价_复权'].shift(1) < df['开盘价_复权'].shift(1)
+    today_green = df['收盘价_复权'] < df['开盘价_复权']
+    today_red = df['收盘价_复权'] > df['开盘价_复权']
+    mid = (df['开盘价_复权'].shift(1) + df['收盘价_复权'].shift(1)) / 2
+    piercing = prev_green & today_red & (df['开盘价_复权'] < df['收盘价_复权'].shift(1)) & (df['收盘价_复权'] > mid)
+    dark_cloud = prev_red & today_green & (df['开盘价_复权'] > df['收盘价_复权'].shift(1)) & (df['收盘价_复权'] < mid)
+    factor_col = piercing.astype(float) - dark_cloud.astype(float)
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+    return factor_df, agg_dict
+
+
+​
+
+（5）收盘价
+
+import pandas as pd
+
+# 财务因子列：此列表用于存储财务因子相关的列名称
+fin_cols = []
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+
+    """
+    因子说明：收盘价
+    计算逻辑：
+    1. 直接提取原始数据中的'收盘价'字段作为因子值。
+    2. 因子聚合方式为取最后一个交易日的数据（'last'）。
+  
+    物理意义：
+    收盘价是A股市场多空双方在日内博弈的最终均衡价格，反映了市场参与者对股票价值的瞬时共识。在中国A股市场，收盘价常受尾盘资金博弈、机构调仓及散户情绪影响，具有反身性特征——价格变动会进一步强化或扭转市场预期，从而影响次日开盘走势。该因子是技术分析和量化模型的基础输入，常用于计算收益率、波动率及各类衍生因子。
+    """
+
+    col_name = kwargs['col_name']
+
+    # 我们这里的市值因子使用总市值的数值
+    factor_col = df['收盘价']
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+
+    # 返回新计算的因子列以及因子聚合方式
+    return factor_df, agg_dict
+
+
+​
+
+（6）换手率
+
+import pandas as pd
+
+# 财务因子列：此列表用于存储财务因子相关的列名称
+fin_cols = []
+
+def add_factor(df: pd.DataFrame, param, fin_data=None, **kwargs) -> (pd.DataFrame, dict):
+    """
+    因子说明：换手率
+    计算逻辑：
+    1. 计算每日的换手率 = 当日成交额 / 当日流通市值。
+    2. 对每日换手率进行 param（如 5日、20日）周期的移动平均（rolling mean）。
+  
+    物理意义：
+    衡量股票在特定周期内的交投活跃度。
+    高换手率通常代表资金关注度高、流动性好，但也可能伴随高波动或情绪过热；
+    低换手率则代表股票交投清淡。在不同宏观状态下，换手率因子的有效性方向会发生反转。
+    """
+
+    col_name = kwargs['col_name']
+    # 我们这里的市值因子使用总市值的数值
+    turnover_rate = df['成交额'] / df['流通市值']
+    factor_col = turnover_rate.rolling(param).mean()
+
+    factor_df = pd.DataFrame({col_name: factor_col}, index=df.index)
+
+    agg_dict = {col_name: 'last'}
+
+    # 返回新计算的因子列以及因子聚合方式
+    return factor_df, agg_dict
+
+
+​
+
+（7）Alpha4
+
+import pandas as pd
+
+# 财务因子列：此列表用于存储财务因子相关的列名称
+fin_cols = []  # 财务因子列，配置后系统会自动加载对应的财务数据
+
+
+def add_factor(df: pd.DataFrame, param=None, **kwargs) -> (pd.DataFrame, dict):
+    """
+    计算并将Alpha4因子添加到股票行情数据中，并返回包含计算因子的DataFrame及其聚合方式。
+  
+    Alpha4因子定义：-1 * 最低价的时间序列排名（默认窗口9天）
+    逻辑说明：通过计算一段时间内最低价在该区间的排名（1为最低，N为最高），再取相反数，反映价格低位特征
+    """
+
+    # ======================== 参数处理 ===========================
+    # 从kwargs中提取因子列的名称
+    col_name = kwargs['col_name']
+    param = int(param[0])  # 时间序列排名窗口，可通过param调整
+    # 设置默认参数（Alpha4通常使用9天排名窗口）
+    # if param is None:
+    #     param = 9  # 时间序列排名窗口，可通过param调整
+
+    # ======================== 计算因子 ===========================
+    # 提取最低价数据
+    low_price = df['最低价']
+  
+    # 计算时间序列排名：在param天窗口内，当前最低价的排名（1表示窗口内最低，param表示最高）
+    # min_periods=1确保窗口不足时仍能计算（窗口内有1个数据即可）
+    ts_rank = low_price.rolling(window=param, min_periods=1).rank(method='min')  # method='min'确保排名稳定
+  
+    # Alpha4公式：-1 * 时间序列排名
+    df[col_name] = -1 * ts_rank
+
+    # ======================== 聚合方式 ===========================
+    # 因子聚合方式：周期转换时保留最新值（价量类因子通用处理）
+    agg_rules = {
+        col_name: 'last'
+    }
+
+    return df[[col_name]], agg_rules
+
+​
+
+（8）Alpha84
+
+import pandas as pd
+import numpy as np
+
+# 财务因子列：此列表用于存储财务因子相关的列名称
+fin_cols = []  # 财务因子列，配置后系统会自动加载对应的财务数据
+
+
+def add_factor(df: pd.DataFrame, param=None, **kwargs) -> (pd.DataFrame, dict):
+    """
+    计算并将Alpha84因子添加到股票行情数据中，并返回包含计算因子的DataFrame及其聚合方式。
+  
+    Alpha84因子定义：VWAP与滚动窗口内最大值的差的时间序列排名，进行符号保持幂运算（幂为收盘价5天差分）
+    逻辑说明：通过价格波动方向（收盘价差分）调节VWAP低位特征的权重，强化趋势与价格位置的联动
+    """
+
+    # ======================== 参数处理 ===========================
+    # 从kwargs中提取因子列的名称
+    col_name = kwargs['col_name']
+    param1 = int(param[0])   # VWAP取最大值的窗口（原Alpha84为15天）
+    param2 = int(param[1])  # 收盘价差分窗口（原Alpha84为5天）
+    # 参数为字典，包含vwap_max_window（VWAP最大值窗口）和close_delta_window（收盘价差分窗口）
+    # if param is None:
+    #     param = {
+    #         'vwap_max_window': 15,  # VWAP取最大值的窗口（原Alpha84为15天）
+    #         'close_delta_window': 5  # 收盘价差分窗口（原Alpha84为5天）
+    #     }
+
+    # ======================== 计算因子 ===========================
+    # 1. 计算VWAP（成交量加权平均价）
+    # VWAP公式：sum(成交量*(最高价+最低价+收盘价)/3) / sum(成交量)
+    typical_price = (df['最高价'] + df['最低价'] + df['收盘价']) / 3
+    vwap = (df['成交量'] * typical_price).cumsum() / df['成交量'].cumsum()
+    # 填充VWAP计算初期的NaN（首日VWAP等于当日典型价格）
+    vwap = vwap.fillna(typical_price)
+
+    # 2. 计算VWAP与滚动窗口内最大值的差（vwap - ts_max(vwap, window)）
+    vwap_max = vwap.rolling(window=param1, min_periods=1).max()
+    vwap_diff = vwap - vwap_max  # 结果为非正数（VWAP <= 窗口内最大值）
+
+    # 3. 计算上述差值的时间序列排名（窗口内值越小，排名越靠前）
+    ts_rank = vwap_diff.rolling(window=param1, min_periods=1).rank(method='min')
+
+    # 4. 计算收盘价的N天差分（close - delay(close, N)）
+    close_delta = df['收盘价'] - df['收盘价'].shift(param2)
+
+    # 5. Alpha84公式：对时间序列排名进行符号保持幂运算（底数^指数）
+    # 注：使用np.sign保留符号，避免负数开偶次幂出现复数
+    df[col_name] = np.sign(ts_rank) * np.abs(ts_rank) ** close_delta
+
+    # ======================== 聚合方式 ===========================
+    # 因子聚合方式：周期转换时保留最新值（价量衍生因子通用处理）
+    agg_rules = {
+        col_name: 'last'
+    }
+
+    return df[[col_name]], agg_rules
+
+​
+
+（9）Donchian通道位置择时
+
+# -*- coding: utf-8 -*-
+"""
+唐奇安Donchian通道位置指数择时【均线分区双参数版，蓝本来自你修改后的单参数代码】
+参数传入顺序：n,long_thresh,short_thresh,junxian,n1,long_thresh1,short_thresh1
+分区规则：
+1、指数收盘 > MA_junxian(均线上)：通道周期n，阈值long_thresh / short_thresh
+2、指数收盘 ≤ MA_junxian(均线下)：通道周期n1，阈值long_thresh1 / short_thresh1
+信号规则（完全保留你修改后的特殊开仓逻辑）：
+【开仓做多1】二选一满足即开仓
+   ① 通道位置 上穿 long_thresh（今日>阈值，昨日≤阈值）
+   ② 通道位置 上穿 short_thresh（今日>阈值，昨日≤阈值）
+【空仓0两种场景】任意满足即空仓
+   ① 通道位置 下穿 long_thresh（强势结束止盈离场）
+   ② 通道位置 下穿 short_thresh（弱势破位止损）
+3、无交叉触发延续昨日信号，初始默认空仓0
+计算标的：880823微盘股指数（最高/最低/收盘）
+因子：donch_pos = (收盘-通道中轨)/(通道上下轨差值)
+"""
+import pandas as pd
+import numpy as np
+from datetime import datetime as dt
+
+def equity_signal(equity_df: pd.DataFrame, *args) -> pd.Series:
+    # 读取外部7个参数
+    n = int(args[0])
+    long_thresh = float(args[1])
+    short_thresh = float(args[2])
+    junxian = int(args[3])
+    n1 = int(args[4])
+    long_thresh1 = float(args[5])
+    short_thresh1 = float(args[6])
+
+    # 1、读取微盘股指数880823
+    index_df = pd.read_excel(
+        r"C:\Users\Hasee\Desktop\880823.xls",
+        sheet_name=0,
+        engine="xlrd"
+    )
+    index_df.columns = index_df.columns.str.strip()
+    index_df["时间"] = pd.to_datetime(index_df["时间"])
+    index_df = index_df.rename(columns={"时间": "交易日期"})
+    index_df = index_df.sort_values("交易日期").reset_index(drop=True)
+    # 日期字符串索引，对齐资金曲线
+    index_df["交易日期_str"] = index_df["交易日期"].dt.strftime("%Y-%m-%d")
+    index_df = index_df.set_index("交易日期_str").sort_index()
+
+    # 计算分界均线
+    index_df["MA_X"] = index_df["收盘"].rolling(window=junxian, min_periods=1).mean()
+    close = index_df["收盘"]
+    ma_x = index_df["MA_X"]
+    is_up = close > ma_x        # 均线上标记
+    is_down = close <= ma_x     # 均线下标记
+
+    # ========== 线上区间：周期n 全套指标 ==========
+    hh_up = index_df["最高"].rolling(window=n, min_periods=1).max()
+    ll_up = index_df["最低"].rolling(window=n, min_periods=1).min()
+    mid_up = (hh_up + ll_up) / 2
+    pos_up = (close - mid_up) / (hh_up - ll_up + 1e-8)
+
+    # ========== 线下区间：周期n1 全套指标 ==========
+    hh_down = index_df["最高"].rolling(window=n1, min_periods=1).max()
+    ll_down = index_df["最低"].rolling(window=n1, min_periods=1).min()
+    mid_down = (hh_down + ll_down) / 2
+    pos_down = (close - mid_down) / (hh_down - ll_down + 1e-8)
+
+    # ===================== 分区条件（完全复刻你原版买卖逻辑） =====================
+    # -------------------- 线上信号 --------------------
+    # 线上开仓：上穿强势阈值 OR 上穿弱势阈值
+    buy_up = is_up & (
+        ((pos_up > long_thresh) & (pos_up.shift(1) <= long_thresh))
+        | ((pos_up > short_thresh) & (pos_up.shift(1) <= short_thresh))
+    )
+    # 线上空仓：下穿强势止盈 / 下穿弱势止损
+    sell_up_profit = is_up & (pos_up < long_thresh) & (pos_up.shift(1) >= long_thresh)
+    sell_up_stop = is_up & (pos_up < short_thresh) & (pos_up.shift(1) >= short_thresh)
+    sell_up = sell_up_profit | sell_up_stop
+
+    # -------------------- 线下信号 --------------------
+    buy_down = is_down & (
+        ((pos_down > long_thresh1) & (pos_down.shift(1) <= long_thresh1))
+        | ((pos_down > short_thresh1) & (pos_down.shift(1) <= short_thresh1))
+    )
+    sell_down_profit = is_down & (pos_down < long_thresh1) & (pos_down.shift(1) >= long_thresh1)
+    sell_down_stop = is_down & (pos_down < short_thresh1) & (pos_down.shift(1) >= short_thresh1)
+    sell_down = sell_down_profit | sell_down_stop
+
+    # 合并全市场开仓、空仓
+    all_buy = buy_up | buy_down
+    all_sell = sell_up | sell_down
+
+    # 4、生成原始指数信号，空仓优先级高于开仓
+    sig_raw = pd.Series(np.nan, index=index_df.index)
+    sig_raw.loc[all_sell] = 0.0
+    sig_raw.loc[all_buy] = 1.0
+    # 无触发延续前值，初始默认空仓0
+    sig_raw = sig_raw.ffill().fillna(0.0)
+
+    # 5、信号对齐资金曲线日期
+    result = pd.Series(0.0, index=equity_df.index)
+    sig_map = sig_raw.to_dict()
+    equity_df["交易日期"] = pd.to_datetime(equity_df["交易日期"], errors="coerce")
+
+    for idx, row in equity_df.iterrows():
+        dt_str = row["交易日期"].strftime("%Y-%m-%d")
+        result.at[idx] = sig_map.get(dt_str, 0.0)
+
+    # 6、控制台打印明细（增加均线、区间标记，方便核对分区）
+    print("=" * 145)
+    print(f"{'日期':<12}{'收盘':<8}{'分界MA':<10}{'区间':<6}{'线上通道位置':<12}{'线下通道位置':<12}{'信号':<6}")
+    print("-" * 145)
+    for _, row_eq in equity_df.iterrows():
+        dt_str = row_eq["交易日期"].strftime("%Y-%m-%d")
+        if dt_str in index_df.index:
+            idx_row = index_df.loc[dt_str]
+            close_val = round(idx_row["收盘"], 2)
+            ma_val = round(ma_x.loc[dt_str], 2)
+            zone = "线上" if is_up.loc[dt_str] else "线下"
+            pos_u = round(pos_up.loc[dt_str], 6)
+            pos_d = round(pos_down.loc[dt_str], 6)
+        else:
+            close_val = ma_val = pos_u = pos_d = "NaN"
+            zone = "NaN"
+        sig_val = int(result.loc[row_eq.name])
+        print(f"{dt_str:<12}{close_val:<8}{ma_val:<10}{zone:<6}{pos_u:<12}{pos_d:<12}{sig_val:<6}")
+    print("=" * 145)
+
+    # 统计输出
+    print(f"=== Donchian均线分区择时参数汇总 ===")
+    print(f"分界均线周期：MA{junxian}")
+    print(f"【均线上方】通道周期n={n}，强势阈值={long_thresh}，弱势阈值={short_thresh}")
+    print(f"【均线下方】通道周期n1={n1}，强势阈值={long_thresh1}，弱势阈值={short_thresh1}")
+    print(f"开仓规则：上穿强势阈值 OR 上穿弱势阈值 任意一个触发即开仓")
+    print(f"空仓规则：下穿强势止盈 / 下穿弱势止损 任意一个触发即空仓")
+    print(f"总交易日：{len(result)} | 做多(1)天数：{(result==1).sum()} | 空仓(0)天数：{(result==0).sum()}")
+    return result
+
+​
+
+四、策略回测表现
+
+4.1、回测资金曲线
+
+4.2、策略回测表现
+
+策略评价：
+0
+累积净值 11542.41
+年化收益 71.49%
+最大回撤 -23.76%
+最大回撤开始时间 2017-03-20 00:00:00
+最大回撤结束时间 2017-06-01 00:00:00
+年化收益/回撤比 3.01
+盈利周期数 1820.0
+亏损周期数 2392.0
+胜率 43.20%
+每周期平均收益 0.24%
+盈亏收益比 2.05
+单周期最大盈利 12.47%
+单周期大亏损 -11.76%
+最大连续盈利周期数 21.0
+最大连续亏损周期数 33.0
+收益率标准差 1.75%
+分年收益率：
+涨跌幅
+交易日期
+2009-12-31 281.46%
+2010-12-31 112.3%
+2011-12-31 50.33%
+2012-12-31 44.08%
+2013-12-31 88.12%
+2014-12-31 89.15%
+2015-12-31 540.16%
+2016-12-31 30.02%
+2017-12-31 7.32%
+2018-12-31 12.29%
+2019-12-31 28.17%
+2020-12-31 31.79%
+2021-12-31 43.78%
+2022-12-31 43.19%
+2023-12-31 26.9%
+2024-12-31 161.08%
+2025-12-31 46.0%
+2026-12-31 9.59%
+
+五、总结
+1.因子使用注意：部分因子原本是固定周期的（20日之类）。我改为了输入周期参数形式，需要下载后使用，不过当时没有改因子名字，下载使用时候可以考虑重命名或者直接覆盖原本的因子再使用。
+2.从新因子做的择时把年化收益/回撤比从择时前的2.31变为了3.01，有一定的提升作用。
+3.未择时前的策略信息：
+策略评价：
+累积净值 27694.14
+年化收益 80.37%
+最大回撤 -34.77%
+最大回撤开始时间 2024-01-11 00:00:00
+最大回撤结束时间 2024-02-08 00:00:00
+年化收益/回撤比 2.31
+盈利周期数 2465.0
+亏损周期数 1747.0
+胜率 58.51%
+每周期平均收益 0.27%
+盈亏收益比 0.99
+单周期最大盈利 12.47%
+单周期大亏损 -14.17%
+最大连续盈利周期数 25.0
+最大连续亏损周期数 14.0
+收益率标准差 2.20%
+分年收益率：
+涨跌幅
+交易日期
+2009-12-31 420.59%
+2010-12-31 99.16%
+2011-12-31 5.95%
+2012-12-31 51.12%
+2013-12-31 103.85%
+2014-12-31 150.01%
+2015-12-31 1015.22%
+2016-12-31 84.89%
+2017-12-31 -12.79%
+2018-12-31 6.75%
+2019-12-31 47.71%
+2020-12-31 15.24%
+2021-12-31 49.15%
+2022-12-31 24.66%
+2023-12-31 48.33%
+2024-12-31 94.98%
+2025-12-31 116.07%
+2026-12-31 -13.78%
+
+4.部分因子的IC和分箱图
+
+
+六、附件
+
+附件
+ Donchian通道位置_20日.py
+1 KB
+下载
+ Alpha4.py
+1 KB
+下载
+ Alpha84.py
+2 KB
+下载
+ 枢轴点强度_20日.py
+1 KB
+下载
+ 收盘价.py
+1 KB
+下载
+ 穿刺形态信号.py
+2 KB
+下载
+ 换手率.py
+1 KB
+下载
+ Donchian通道位置择时.py
+6 KB
+下载
+ config.py
+9 KB
+下载
+ 880823.xls
+1,445 KB
+下载
+3人打赏了4个葫芦籽
+投籽
+阅读 197
+暂无评论
+还能输入40000个字 发 布
+投籽
+收藏
+分享
+举报
+评论0
+投籽4

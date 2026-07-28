@@ -556,3 +556,13 @@
 - **核心思路**：4因子全升序，低风险策略，持仓5D选10只。
 - **HTML**：`strategy/htmls/不甜不放盐-市值成交额STD流动性螺旋因子.html`
 - **文档**：`strategy/docs/不甜不放盐-市值成交额STD流动性螺旋策略.md`
+
+## 策略20：市值+Donchian+枢轴点强度策略（非预处理版）
+- **作者**：Seth
+- **来源**：https://bbs.quantclass.cn/thread/86765
+- **年化**：71.49% | **回撤**：-23.76% | **Calmar**：3.01
+- **主因子**：小市值
+- **副因子**：Donchian通道位置（择时）; 枢轴点强度; Alpha4/84
+- **核心思路**：Seth原版，与预处理线程thread/86842对应，参数略有调整
+- **HTML**：`strategy/htmls/Seth-非预处理版-市值Donchian枢轴点强度等因子.html`
+- **文档**：`strategy/docs/Seth-非预处理版-市值Donchian枢轴点强度策略.md`
