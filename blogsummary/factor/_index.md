@@ -23,3 +23,4 @@
 | 小市值 | 筛选因子 | 69.2% | 2.58 | 小市值+筛选 | [查看](../strategy/docs/半岛微凉-小市值筛选因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/86823) |
 | 小市值 | 云游策略优化 | 91% | 2.57 | 优化云游 | [查看](../strategy/docs/hans郑-优化云游策略.md) | [原帖](https://bbs.quantclass.cn/thread/87487) |
 | 国泰君安量价因子池 | 广发LLT择时 | 32.34% | 2.48 | 机构因子+择时低风险 | [查看](../strategy/docs/刘小力-国泰君安量价因子32+4策略.md) | [原帖](https://bbs.quantclass.cn/thread/87867) |
+| 小市值（遗传筛选） | 均线支撑; 均线多头排列; 成交额稳定性; CCI; MACD择时 | 45.7% | 2.48 | 遗传算法优化 | [查看](../strategy/docs/游击战策略-遗传算法均线CCI策略.md) | [原帖](https://bbs.quantclass.cn/thread/87018) |
