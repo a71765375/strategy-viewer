@@ -14,3 +14,4 @@
 | 总市值×成交额STD_回归动量选股策略 | strategy/docs/总市值成交额STD_回归动量选股策略.md | strategy/htmls/北海鳄神-总市值成交额STD回归动量选股策略.html | 总市值×成交额10日STD、20日涨跌幅（超跌） | 2026-07-27 |
 
 | 442次多因子组合搜索方法论 | strategy/docs/442次多因子组合搜索方法论.md | strategy/htmls/万家乐常卫全-442次多因子组合搜索.html | 成交额STD+小市值、流动性深度、TRIX、龙头股特征、净主动买入强度、成交额稳定性 | 2026-06-13 |
+| Morse-过拟合之基于Ret市值等11因子选股策略 | https://bbs.quantclass.cn/thread/87621 | 2026-07-28 |
