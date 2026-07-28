@@ -1,7 +1,15 @@
-# 策略详情
+# Allen-基于Ret市值等6因子选股策略
 
 **作者**: Allen
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+最开始通过遍历单个因子的有效性选出了7个因子
+，后来读到了【
+】和【
+】对于因子分析后理解了我选的几个因子为什么有效，不同类别的因子能够增强信号提升效果。所以我按照因子类别替换的方式开始尝试不同的组合，最后搞出了目前这个结果，但总觉得有点不太相信，怀疑是不是哪个地方搞错了，所以请大家帮我看看因子和config有没有问题。
+6.25更新：考虑到3天持股应该配合更短更敏感的周期的想法，对所有固定周期因子用ai进行了修改，将Donchian通道位置由20日改为1日，成本分布离散度改由60日改为55日，累计净值翻倍，到了536w，年化回撤比到了4
+
+## 可取之处
+
+Allen的策略，具体待进一步分析。

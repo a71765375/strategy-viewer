@@ -1,34 +1,39 @@
-# 策略详情
+# 走天涯-MCXLL多维度超跌反弹策略
 
 **作者**: 走天涯
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+最初拿到这么多因子的时候，又兴奋，又懵逼，然后随便选了一些来测试，结果均不理想。正在一筹莫展的时候。看到组长希勒推荐了两个帖子，一个是lava发布的关于因子分析的内容，一个是万家乐常卫全132131538发布的关于寻找最优组合的经验。在此感谢两位大佬，虽然现在还没有完全理解到所有因子的内涵，但以足够帮助我完成此次作业。经过多次测试，力图通过超跌反弹来进行选股，使用的都是这次小组提供的因子，逐渐找到
+这个策略的核心理念是：从多个维度识别被市场过度抛弃的股票。关于这5个因子的选股逻辑如下（参照DS写的，不知有无错误）:
+MACD三线
+选DIF最小的（空头动能最强）
+成交额稳定性_20日
+选成交额最不稳定的
+协整偏离度_20日
+量价协同强度_20日
+选量价反向最强的
+龙头股特征_60日
+选跑输大盘最多的
+
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| MACD三线 | 升序 | None | 1 |
+| 成交额稳定性_20日 | 升序 | None | 1 |
+| 协整偏离度_20日 | 升序 | None | 1 |
+| 量价协同强度_20日 | 升序 | None | 1 |
+| 龙头股特征_60日 | 升序 | None | 1 |
 
 ## 回测表现
 
 | 指标 | 值 |
 |------|-----|
-| <div style="position: relative; display: block;"><p>累积净值 | 603.01<br> |
-| 亏损周期数 | 1460.0<br> |
-| 年化收益 | 78.01%<br> |
-| 年化收益/回撤比 | 3.74<br> |
-| 收益率标准差 | 1.73%</p><img class="thread-content-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAAADCAYAAABifbbmAAAAbklEQVR4AezSSQqAMBBE0eD97+wA/YIUBDeSVYvyrSEJNDnGGOf7O+vhlZzgJ2ehfuQl5xl0Un9FfXnq9DOnV7Q+qc9PzU9mj8bs03Lk41++/fBrXzlal8w8tf5z8e7/fnsCeyfQF2/vvPu0msAFAAD//xRT2B4AAAAGSURBVAMA72lisg3cESoAAAAASUVORK5CYII="></div> |
-| 最大回撤 | -20.87%<br> |
-| 最大回撤开始时间 | 2015-08-17 00:00:00<br> |
-| 最大回撤结束时间 | 2015-09-02 00:00:00<br> |
-| 最大连续亏损周期数 | 62.0<br> |
-| 最大连续盈利周期数 | 13.0<br> |
-| 每周期平均收益 | 0.25%<br> |
-| 盈亏收益比 | 1.95<br> |
-| 盈利周期数 | 1235.0<br> |
-| 胜率 | 45.81%<br> |
+| 年化收益 | 78.01% |
+| 最大回撤 | -20.87% |
+| 胜率 | 45.81% |
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'5D'</span>,
-    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">3</span>,
-    <span class="hljs-string">"factor_list"</span>: [
-        (<span class="hljs-string">'MACD三线'</span>, <span class="hljs-literal">True</span>, <span
-```
+## 可取之处
+
+年化78.01%，收益水平优秀。 成交额类因子捕捉市场关注度变化，非热股选股思路。 均线择时辅助判断趋势方向。 MACD指标用于趋势确认。

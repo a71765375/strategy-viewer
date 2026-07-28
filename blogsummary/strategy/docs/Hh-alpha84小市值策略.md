@@ -1,14 +1,28 @@
-# 策略详情
+# Hh-alpha84小市值策略
 
 **作者**: Hh
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+选股因子：Alpha84 ，小市值
+回测时间：2009~2026
+alpha 84因子介绍：Alpha84因子来源于国泰君安191因子体系中的Alpha084，简单来说就是计算 当天所有成交的平均成本-收盘价，数值越大越超卖，预期后几日的反弹
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'3D'</span>,  <span class="hljs-comment"># 持仓周期，3个交易日</span>
-    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">5</span>,  <span class="hljs-comment"># 选股数量，每次选5只股票分散风险</span>
-    <span class="hljs-string">"factor_list"</span>
-```
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| 市值 | 升序 | None | 0.4 |
+| Alpha084 | 升序 | None | 0.6 |
+
+## 回测表现
+
+| 指标 | 值 |
+|------|-----|
+| Calmar | 2.65 |
+| 年化收益 | 79.78% |
+| 最大回撤 | 30.09% |
+
+## 可取之处
+
+年化79.78%，收益水平优秀。 Calmar 2.65表现良好。 小市值为核心因子，享受A股小盘溢价。 仅2个因子，思路简洁，过拟合风险相对较低。

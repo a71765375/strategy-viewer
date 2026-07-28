@@ -1,32 +1,34 @@
-# 策略详情
+# Morse-过拟合之基于Ret市值等11因子选股策略
 
 **作者**: Morse
 
-## 策略逻辑
+## 策略思路
 
-</style><script charset="utf-8" src="/_nuxt/commons/pages/essencethread/_id/pages/essencethread/_id copy/pages/my/notice/pages/thread/_id/pages/~915755c1.f9e73a9.js"></script><script charset="utf-8" src="/_nuxt/commons/ab100162~ff5c4196.c39ca7a.js"></script><script charset="utf-8" src="/_nuxt/commons/33b9d0e8~7274e1de.c3ffb34.js"></script><script charset="utf-8" src="/_nuxt/commons/5a7ee80d~31ecd969.6e449df.js"></script><link rel="preload" as="style" href="/_nuxt/pages/thread/_id~01e7b97c.1a9831
+在研究Allen老板
+两个帖子的基础上，感觉既然上影线和下影线作为过滤因子都能提高收益回撤比，那波动率是不是也有这番功能？于是在二位老板的神贴基础上，各种参数优化，得到了一个过拟合的满意结果：收益回撤比从Allen老板的4及超老板的4.21提升到了4.42。
+但是整个过拟合严重，虽然很爽但原理不通，也经不起推敲，不建议实盘。
+策略名称：超优
+回测区间：2009/01/01 - 2026/06/05
+
+## 选股因子
+
+| 因子 | 排序 | 参数 | 权重 |
+|------|------|------|------|
+| Ret | 升序 | 5 | 1 |
+| 市值 | 升序 | None | 1 |
+| 倒锤子线信号 | 升序 | None | 1 |
+| 成本分布离散度改 | 降序 | 55 | 2 |
+| 极端突破信号改 | 降序 | 60 | 3 |
+| 成交额STD | 升序 | 10 | 1 |
 
 ## 回测表现
 
 | 指标 | 值 |
 |------|-----|
-| 亏损周期数 | 1945.0<br> |
-| 年化收益 | 156.41%<br> |
-| 年化收益/回撤比 | 4.42<br> |
-| 收益率标准差 | 2.78%<br> |
-| 最大回撤 | -35.35%<br> |
-| 最大回撤开始时间 | 2015-06-12 00:00:00<br> |
-| 最大回撤结束时间 | 2015-07-08 00:00:00<br> |
-| 最大连续亏损周期数 | 24.0<br> |
-| 最大连续盈利周期数 | 20.0<br> |
-| 每周期平均收益 | 0.43%<br> |
-| 盈亏收益比 | 1.38<br> |
-| 盈利周期数 | 2228.0<br> |
-| 累积净值 | 10777760.81<br> |
-| 胜率 | 53.38%<br> |
+| 年化收益 | 156.41% |
+| 最大回撤 | -35.35% |
+| 胜率 | 53.38% |
 
-## 策略参数
-```python
-'hold_period'</span>: <span class="hljs-string">'3D'</span>,  # 持仓周期，W 代表周，M 代表月，还支持日频：<span class="hljs-number">3</span>D、<span class="hljs-number">5</span>D、<span class="hljs-number">10</span>D
-    <span class="hljs-string">'select_num'</span>: <span class="hljs-number">2</span>,  # 选股数量，可以是整数，也可以
-```
+## 可取之处
+
+年化156.41%属于极高收益区间，需警惕过拟合风险。 小市值为核心因子，享受A股小盘溢价。 成交额类因子捕捉市场关注度变化，非热股选股思路。 反转/Ret类因子捕捉短期超跌反弹机会。
