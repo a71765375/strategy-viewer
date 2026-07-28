@@ -22,3 +22,4 @@
 | 小市值 | 商誉资产占比; 趋势记忆衰减; 换手率 | 66.56% | 2.59 | 基本面+技术面混合 | [查看](../strategy/docs/施塔克-市值商誉趋势记忆换手率策略.md) | [原帖](https://bbs.quantclass.cn/thread/87330) |
 | 小市值 | 筛选因子 | 69.2% | 2.58 | 小市值+筛选 | [查看](../strategy/docs/半岛微凉-小市值筛选因子策略.md) | [原帖](https://bbs.quantclass.cn/thread/86823) |
 | 小市值 | 云游策略优化 | 91% | 2.57 | 优化云游 | [查看](../strategy/docs/hans郑-优化云游策略.md) | [原帖](https://bbs.quantclass.cn/thread/87487) |
+| 国泰君安量价因子池 | 广发LLT择时 | 32.34% | 2.48 | 机构因子+择时低风险 | [查看](../strategy/docs/刘小力-国泰君安量价因子32+4策略.md) | [原帖](https://bbs.quantclass.cn/thread/87867) |

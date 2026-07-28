@@ -32,3 +32,4 @@
 | 施塔克-市值商誉趋势记忆换手率 | https://bbs.quantclass.cn/thread/87330 | 2026-07-28 |
 | 半岛微凉-小市值筛选因子 | https://bbs.quantclass.cn/thread/86823 | 2026-07-28 |
 | hans郑-优化云游策略 | https://bbs.quantclass.cn/thread/87487 | 2026-07-28 |
+| 刘小力-国泰君安量价因子32+4 | https://bbs.quantclass.cn/thread/87867 | 2026-07-28 |
